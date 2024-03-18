@@ -10,8 +10,12 @@ import AboutUs from "./page/PublicPages/AboutUs";
 
 //  Authenticated Routes:
 import AuthenticatedHomepage from "./page/AuthenticatedPages/AuthenticatedHomepage";
+import { useAuth } from "./context/authProvider";
 
 const Routes = () => {
+  // Use Context of Authorization
+  const { token } = useAuth();
+
   const routesForPublic = [{ path: "/about-us", element: <AboutUs /> }];
 
   const routesForUnauthenticatedOnly = [
@@ -24,10 +28,11 @@ const Routes = () => {
     { path: "/", element: <AuthenticatedHomepage /> },
   ];
 
+  // If diferrent routes depedding on if the user has token or not.
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...routesForUnauthenticatedOnly,
-    ...routesForAuthenticatedOnly,
+    ...(!token ? routesForUnauthenticatedOnly : []),
+    ...(token ? routesForAuthenticatedOnly : []),
   ]);
 
   return <RouterProvider router={router}></RouterProvider>;
