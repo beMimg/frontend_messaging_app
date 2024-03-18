@@ -7,7 +7,7 @@ import tongeSvg from "../../assets/reshot-icon-tongue-Y92VG4RXPL.svg";
 
 export default function UnauthenticatedHomepage() {
   return (
-    <div className="grid h-screen grid-rows-2 bg-gradient-to-b from-teal-600 to-teal-900 p-6 text-white">
+    <div className="grid h-screen grid-rows-2 bg-gradient-to-b from-rose-500 to-rose-900 p-6 font-roboto text-white">
       <div className="relative">
         <img
           src={glassesKissSvg}
@@ -42,9 +42,12 @@ export default function UnauthenticatedHomepage() {
             Connect with each other with catting. Enjoy safe and private texting
           </p>
         </div>
-        <button className="w-full rounded-lg bg-white p-2 text-center font-semibold text-teal-600">
+        <Link
+          to="/sign-up"
+          className="w-full rounded-lg bg-white p-2 text-center font-semibold text-rose-500"
+        >
           Start Chatting
-        </button>
+        </Link>
         <p>
           Already have an account?{" "}
           <Link to="/login" className=" font-bold">
