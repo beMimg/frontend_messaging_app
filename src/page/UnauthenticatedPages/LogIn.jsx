@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_DOMAIN } from "../../utils/API_DOMAIN";
+import { useAuth } from "../../context/authProvider";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
+
+  const { setToken } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -18,7 +21,7 @@ export default function LogIn() {
       });
 
       if (response.status === 200) {
-        return console.log(response.data.token);
+        return setToken(response.data.token);
       }
     } catch (err) {
       return setErrors(err.response.data.errors);
