@@ -147,7 +147,10 @@ export default function SignUp() {
       <div className="flex flex-col gap-3">
         <p className="text-center">
           Already have an account?{" "}
-          <Link className="primary-text-color font-semibold underline">
+          <Link
+            to="/login"
+            className="primary-text-color font-semibold underline"
+          >
             Login
           </Link>
         </p>
