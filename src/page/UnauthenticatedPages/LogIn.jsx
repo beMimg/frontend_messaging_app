@@ -2,12 +2,16 @@ import axios from "axios";
 import { useState } from "react";
 import { API_DOMAIN } from "../../utils/API_DOMAIN";
 import { useAuth } from "../../context/authProvider";
+import { Link, useNavigate } from "react-router-dom";
+import smirkSvg from "../../assets/reshot-icon-smirk-ZGPUEXQHNB.svg";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
+  const [isSuccess, setIsSuccess] = useState(false);
+  const navigation = useNavigate();
 
   const { setToken } = useAuth();
 
@@ -21,7 +25,17 @@ export default function LogIn() {
       });
 
       if (response.status === 200) {
-        return setToken(response.data.token);
+        setIsSuccess(true);
+        // setTimeout of two seconds so the success message can be displayed.
+        // Only then set the token and then navigation.
+        // First set setIsSucess to true, otherwise this route(login) would not be accessible. (not authenticated users ONLY)
+        // First set the token then navigate, otherwise a refresh would be necessary.
+        setTimeout(() => {
+          setToken(response.data.token);
+          navigation("/", { replace: true });
+        }, [2000]);
+
+        return;
       }
     } catch (err) {
       return setErrors(err.response.data.errors);
@@ -30,29 +44,74 @@ export default function LogIn() {
     }
   }
 
-  if (isLoading) {
-    return <p>loading</p>;
-  }
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-        <input
-          type="text"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Submit</button>
+    <div className="flex h-screen flex-col justify-evenly  p-6 font-roboto">
+      <div className="flex flex-row items-center gap-4">
+        <div className="flex flex-col">
+          <h1 className="text-2xl font-semibold">Hi, Welcome Back!</h1>
+          <p className="opacity-50">We've missed you!</p>
+        </div>
+        <img src={smirkSvg} alt="smirk emoji" className="h-14 " />
+      </div>
+      <form className="flex flex-col gap-4">
+        <div className="flex flex-col">
+          <label htmlFor="username" className=" font-medium">
+            Username
+          </label>
+          <input
+            type="text"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            className="input-default"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="password" className=" font-medium">
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="input-default"
+          />
+          {/* build this in future */}
+          <Link to="/" className="primary-text-color mt-2 self-end font-medium">
+            Forgot password
+          </Link>
+        </div>
+        <div className="relative h-3">
+          {errors && (
+            <li className="absolute text-sm text-red-500">{errors}</li>
+          )}
+          {isSuccess && (
+            <p>You've successfully logged in, you will be redirected...</p>
+          )}
+        </div>
       </form>
+      <div className="flex flex-col gap-1.5">
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          className="button-default primary-bg-color text-white"
+          disabled={isLoading}
+        >
+          {isLoading ? "Please wait..." : "Login"}
+        </button>
+        <p className="text-center">
+          Don't have an account?{" "}
+          <Link
+            className="primary-text-color font-semibold underline"
+            to="/sign-up"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

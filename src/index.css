@@ -14,3 +14,7 @@
 .primary-text-color {
   @apply text-rose-600;
 }
+
+.input-default {
+  @apply rounded-md border border-gray-300 p-2;
+}

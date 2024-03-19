@@ -11,7 +11,7 @@ export default function SignUp() {
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
-  const [isSucess, setIsSucess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const navigation = useNavigate();
 
@@ -36,7 +36,7 @@ export default function SignUp() {
       // and then modifies it to a non-existing one.
       // By setting 'errors' to 'undefined', any existing errors are cleared.
       setErrors();
-      setIsSucess(response.data.message + ", you will be redirected...");
+      setIsSuccess(response.data.message + ", you will be redirected...");
       // After sucessfully create account and setIsSucess message,
       // Redirect user to login route.
       setTimeout(() => {
@@ -65,7 +65,7 @@ export default function SignUp() {
           <input
             type="text"
             name="first_name"
-            className="rounded-md border border-gray-300 p-2"
+            className="input-default"
             placeholder="Your first name"
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
@@ -78,7 +78,7 @@ export default function SignUp() {
           <input
             type="username"
             name="username"
-            className="rounded-md border border-gray-300 p-2"
+            className="input-default"
             placeholder="Your username address"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -91,7 +91,7 @@ export default function SignUp() {
           <input
             type="email"
             name="email"
-            className="rounded-md border border-gray-300 p-2"
+            className="input-default"
             placeholder="Your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -104,7 +104,7 @@ export default function SignUp() {
           <input
             type="password"
             name="password"
-            className="rounded-md border border-gray-300 p-2"
+            className="input-default"
             placeholder="Your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +118,7 @@ export default function SignUp() {
             type="password"
             name="password_confirmation"
             id=""
-            className="rounded-md border border-gray-300 p-2"
+            className="input-default"
             value={password_confirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
           />
@@ -130,21 +130,21 @@ export default function SignUp() {
                   {error.msg}
                 </li>
               ))
-            : isSucess && (
+            : isSuccess && (
                 <p className=" text-sm font-medium text-emerald-500">
-                  {isSucess}
+                  {isSuccess}
                 </p>
               )}
         </div>
+      </form>
+      <div className="flex flex-col gap-1.5">
         <button
-          type="submit"
+          onClick={handleSubmit}
           disabled={isLoading}
           className=" button-default primary-bg-color text-white"
         >
           {isLoading ? "Please wait ..." : "Sign Up"}
         </button>
-      </form>
-      <div className="flex flex-col gap-3">
         <p className="text-center">
           Already have an account?{" "}
           <Link
