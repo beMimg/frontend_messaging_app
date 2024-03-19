@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-default {
+  @apply rounded-lg p-2 text-center font-semibold;
+}
+
+.primary-bg-color {
+  @apply bg-rose-600;
+}
+
+.primary-text-color {
+  @apply text-rose-600;
+}

@@ -44,7 +44,7 @@ export default function UnauthenticatedHomepage() {
         </div>
         <Link
           to="/sign-up"
-          className="w-full rounded-lg bg-white p-2 text-center font-semibold text-rose-500"
+          className="button-default primary-text-color bg-white"
         >
           Start Chatting
         </Link>
