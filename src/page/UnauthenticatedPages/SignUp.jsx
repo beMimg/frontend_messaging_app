@@ -1,13 +1,63 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { API_DOMAIN } from "../../utils/API_DOMAIN";
 
 export default function SignUp() {
+  const [first_name, setFirstName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState();
+  const [isLoading, setIsLoading] = useState();
+  const [isSucess, setIsSucess] = useState(false);
+
+  const navigation = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        `${API_DOMAIN}/users`,
+        {
+          first_name,
+          username,
+          email,
+          password,
+          password_confirmation,
+        },
+        {},
+      );
+
+      // This prevents errors from persisting, for example:
+      // If the user attempts to create an account with an existing username,
+      // and then modifies it to a non-existing one.
+      // By setting 'errors' to 'undefined', any existing errors are cleared.
+      setErrors();
+      setIsSucess(response.data.message + ", you will be redirected...");
+      // After sucessfully create account and setIsSucess message,
+      // Redirect user to login route.
+      setTimeout(() => {
+        navigation("/login", { replace: true });
+      }, [2000]);
+      return;
+    } catch (err) {
+      setErrors(err.response.data.errors);
+      return;
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="flex h-screen flex-col justify-around p-6 font-roboto ">
       <div className="flex flex-col gap-1.5">
         <h1 className="text-xl font-semibold ">Create Account</h1>
         <p className=" text-gray-400">Connect with your friends today!</p>
       </div>
-      <form className="flex  flex-col  gap-3">
+      <form onSubmit={handleSubmit} className="flex  flex-col gap-3">
         <div className="flex flex-col">
           <label htmlFor="first_name" className=" font-medium">
             First Name
@@ -17,28 +67,34 @@ export default function SignUp() {
             name="first_name"
             className="rounded-md border border-gray-300 p-2"
             placeholder="Your first name"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="last_name" className=" font-medium">
-            Last Name
-          </label>
-          <input
-            type="text"
-            name="last_name"
-            className="rounded-md border border-gray-300 p-2"
-            placeholder="Your last name"
+            value={first_name}
+            onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="email" className=" font-medium">
-            Email Adress
+            Username
+          </label>
+          <input
+            type="username"
+            name="username"
+            className="rounded-md border border-gray-300 p-2"
+            placeholder="Your username address"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="email" className=" font-medium">
+            Email Address
           </label>
           <input
             type="email"
             name="email"
             className="rounded-md border border-gray-300 p-2"
-            placeholder="Your email adress"
+            placeholder="Your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -50,6 +106,8 @@ export default function SignUp() {
             name="password"
             className="rounded-md border border-gray-300 p-2"
             placeholder="Your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -61,21 +119,39 @@ export default function SignUp() {
             name="password_confirmation"
             id=""
             className="rounded-md border border-gray-300 p-2"
+            value={password_confirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
           />
         </div>
+        <div>
+          {errors
+            ? errors.map((error) => (
+                <li className="text-sm text-red-500" key={error.msg}>
+                  {error.msg}
+                </li>
+              ))
+            : isSucess && (
+                <p className=" text-sm font-medium text-emerald-500">
+                  {isSucess}
+                </p>
+              )}
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className=" button-default primary-bg-color text-white"
+        >
+          {isLoading ? "Please wait ..." : "Sign Up"}
+        </button>
       </form>
-      <button
-        type="submit"
-        className=" button-default primary-bg-color text-white"
-      >
-        Sign Up
-      </button>
-      <p className="text-center">
-        Already have an account?{" "}
-        <Link className="primary-text-color font-semibold underline">
-          Login
-        </Link>
-      </p>
+      <div className="flex flex-col gap-3">
+        <p className="text-center">
+          Already have an account?{" "}
+          <Link className="primary-text-color font-semibold underline">
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
