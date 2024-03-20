@@ -25,6 +25,8 @@ export default function LogIn() {
       });
 
       if (response.status === 200) {
+        setErrors();
+        // First setErrors no undefined, otherwise would persists.
         setIsSuccess(true);
         // setTimeout of two seconds so the success message can be displayed.
         // Only then set the token and then navigation.
@@ -89,7 +91,9 @@ export default function LogIn() {
             <li className="absolute text-sm text-red-500">{errors}</li>
           )}
           {isSuccess && (
-            <p>You've successfully logged in, you will be redirected...</p>
+            <p className="text-sm font-medium text-emerald-500">
+              You've successfully logged in, you will be redirected...
+            </p>
           )}
         </div>
       </form>
