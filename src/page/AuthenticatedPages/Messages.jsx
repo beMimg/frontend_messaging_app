@@ -10,7 +10,7 @@ export default function Messages() {
   const { user } = useAuth();
 
   return (
-    <div>
+    <div className="p-6">
       {user && (
         <div>
           <div className="flex flex-row items-center justify-between">
