@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_DOMAIN } from "../../utils/API_DOMAIN";
+import girlPhoneImg from "../../assets/girl-phone.svg";
+import animatedText from "../../assets/animated-text.gif";
 
 export default function SignUp() {
   const [first_name, setFirstName] = useState("");
@@ -52,108 +54,124 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex h-screen flex-col justify-around p-6 font-roboto ">
-      <div className="flex flex-col gap-1.5">
-        <h1 className="text-xl font-semibold ">Create Account</h1>
-        <p className=" text-gray-400">Connect with your friends today!</p>
+    <div className=" font-roboto xl:grid xl:grid-cols-2">
+      <div className=" relative hidden flex-col items-center justify-center bg-gradient-to-b from-rose-500 to-rose-900 xl:flex">
+        <img
+          className="w-[150px] xl:mr-[200px] 2xl:w-[250px]"
+          src={animatedText}
+          alt="animated text gif"
+        />
+        <img
+          src={girlPhoneImg}
+          className="w-[500px] 2xl:w-[700px]"
+          alt="girl of phone photo"
+        />
       </div>
-      <form onSubmit={handleSubmit} className="flex  flex-col gap-3">
-        <div className="flex flex-col">
-          <label htmlFor="first_name" className=" font-medium">
-            First Name
-          </label>
-          <input
-            type="text"
-            name="first_name"
-            className="input-default"
-            placeholder="Your first name"
-            value={first_name}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
+      <div className="flex h-screen flex-col justify-around p-6 xl:col-start-2 xl:rounded-l-[100px]">
+        <div className="flex flex-col gap-1.5">
+          <h1 className="primary-text-color text-xl font-semibold xl:text-3xl ">
+            Create Account
+          </h1>
+          <p className=" text-gray-400">Connect with your friends today!</p>
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="email" className=" font-medium">
-            Username
-          </label>
-          <input
-            type="username"
-            name="username"
-            className="input-default"
-            placeholder="Your username address"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="email" className=" font-medium">
-            Email Address
-          </label>
-          <input
-            type="email"
-            name="email"
-            className="input-default"
-            placeholder="Your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="password" className=" font-medium">
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            className="input-default"
-            placeholder="Your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="password_confirmation" className=" font-medium">
-            Password Confirmation
-          </label>
-          <input
-            type="password"
-            name="password_confirmation"
-            id=""
-            className="input-default"
-            value={password_confirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-          />
-        </div>
-        <div>
-          {errors
-            ? errors.map((error) => (
-                <li className="text-sm text-red-500" key={error.msg}>
-                  {error.msg}
-                </li>
-              ))
-            : isSuccess && (
-                <p className=" text-sm font-medium text-emerald-500">
-                  {isSuccess}
-                </p>
-              )}
-        </div>
-      </form>
-      <div className="flex flex-col gap-1.5">
-        <button
-          onClick={handleSubmit}
-          disabled={isLoading}
-          className=" button-default primary-bg-color text-white"
-        >
-          {isLoading ? "Please wait ..." : "Sign Up"}
-        </button>
-        <p className="text-center">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="primary-text-color font-semibold underline"
+        <form onSubmit={handleSubmit} className="flex  flex-col gap-3 ">
+          <div className="flex flex-col">
+            <label htmlFor="first_name" className=" font-medium">
+              First Name
+            </label>
+            <input
+              type="text"
+              name="first_name"
+              className="input-default"
+              placeholder="Your first name"
+              value={first_name}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="email" className=" font-medium">
+              Username
+            </label>
+            <input
+              type="username"
+              name="username"
+              className="input-default "
+              placeholder="Your username address"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="email" className=" font-medium">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="input-default"
+              placeholder="Your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="password" className=" font-medium">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              className="input-default"
+              placeholder="Your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="password_confirmation" className=" font-medium">
+              Password Confirmation
+            </label>
+            <input
+              type="password"
+              name="password_confirmation"
+              id=""
+              className="input-default"
+              value={password_confirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+            />
+          </div>
+          <div>
+            {errors
+              ? errors.map((error) => (
+                  <li className="text-sm text-red-500" key={error.msg}>
+                    {error.msg}
+                  </li>
+                ))
+              : isSuccess && (
+                  <p className=" text-sm font-medium text-emerald-500">
+                    {isSuccess}
+                  </p>
+                )}
+          </div>
+        </form>
+        <div className="flex flex-col gap-1.5">
+          <button
+            onClick={handleSubmit}
+            disabled={isLoading}
+            className=" button-default primary-bg-color text-white"
           >
-            Login
-          </Link>
-        </p>
+            {isLoading ? "Please wait ..." : "Sign Up"}
+          </button>
+          <p className="text-center">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="primary-text-color font-semibold underline"
+            >
+              Login
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
