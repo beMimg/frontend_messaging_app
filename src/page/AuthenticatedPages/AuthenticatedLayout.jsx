@@ -3,7 +3,7 @@ import Nav from "../../components/Nav";
 
 export default function AuthenticatedLayout() {
   return (
-    <div className="p-4">
+    <div className="p-6">
       <Outlet />
       <Nav></Nav>
     </div>
