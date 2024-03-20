@@ -9,8 +9,9 @@ import LogIn from "./page/UnauthenticatedPages/LogIn";
 import AboutUs from "./page/PublicPages/AboutUs";
 
 //  Authenticated Routes:
-import AuthenticatedHomepage from "./page/AuthenticatedPages/AuthenticatedHomepage";
+import AuthenticatedLayout from "./page/AuthenticatedPages/AuthenticatedLayout";
 import { useAuth } from "./context/authProvider";
+import Messages from "./page/AuthenticatedPages/Messages";
 
 const Routes = () => {
   // Use Context of Authorization
@@ -25,7 +26,11 @@ const Routes = () => {
   ];
 
   const routesForAuthenticatedOnly = [
-    { path: "/", element: <AuthenticatedHomepage /> },
+    {
+      path: "/",
+      element: <AuthenticatedLayout />,
+      children: [{ index: true, path: "/messages", element: <Messages /> }],
+    },
   ];
 
   // If diferrent routes depedding on if the user has token or not.

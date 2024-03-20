@@ -21,7 +21,8 @@ function AuthProvider({ children }) {
           setUser(response.data.user);
           return;
         } catch (err) {
-          console.log(err);
+          setUser("Could not fetch user");
+          return;
         }
       };
       // call the async function
