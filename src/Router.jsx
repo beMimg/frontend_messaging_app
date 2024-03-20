@@ -12,6 +12,7 @@ import AboutUs from "./page/PublicPages/AboutUs";
 import AuthenticatedLayout from "./page/AuthenticatedPages/AuthenticatedLayout";
 import { useAuth } from "./context/authProvider";
 import Messages from "./page/AuthenticatedPages/Messages";
+import VisitedProfile from "./page/AuthenticatedPages/VisitedProfile";
 
 const Routes = () => {
   // Use Context of Authorization
@@ -29,7 +30,10 @@ const Routes = () => {
     {
       path: "/",
       element: <AuthenticatedLayout />,
-      children: [{ index: true, path: "/messages", element: <Messages /> }],
+      children: [
+        { index: true, element: <Messages /> },
+        { path: "/users/:id", element: <VisitedProfile /> },
+      ],
     },
   ];
 
