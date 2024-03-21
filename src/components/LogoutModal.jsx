@@ -8,6 +8,7 @@ export default function LogoutModal({ setLogoutModalOpen }) {
   const navigation = useNavigate();
 
   function handleLogout() {
+    // remove token and go back go root
     setToken();
     navigation("/", { replace: true });
   }

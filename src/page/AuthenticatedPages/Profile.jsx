@@ -2,12 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
 import { useState } from "react";
 import LogoutModal from "../../components/LogoutModal";
+import ToggleThemeButton from "../../components/toggleThemeButton";
 
 export default function Profile() {
-  const { user } = useAuth();
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const { user } = useAuth();
 
-  console.log(logoutModalOpen);
   return (
     user && (
       <div className="flex h-screen flex-col">
@@ -34,7 +34,7 @@ export default function Profile() {
           {logoutModalOpen && (
             <LogoutModal setLogoutModalOpen={setLogoutModalOpen} />
           )}
-          <button className="text-start">Theme Mode</button>
+          <ToggleThemeButton />
         </div>
       </div>
     )
