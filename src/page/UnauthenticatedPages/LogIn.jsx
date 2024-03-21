@@ -62,7 +62,7 @@ export default function LogIn() {
           className="xl:w-[80%]"
         />
       </div>
-      <div className="flex h-full flex-col justify-evenly p-6 px-20 ">
+      <div className="flex h-full flex-col justify-evenly p-6 xl:px-20 ">
         <div className="flex flex-row items-center gap-4">
           <div className="flex flex-col">
             <h1 className="text-2xl font-semibold">Hi, Welcome Back!</h1>
