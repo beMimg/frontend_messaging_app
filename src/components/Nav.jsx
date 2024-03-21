@@ -1,6 +1,6 @@
 import { FiSearch } from "react-icons/fi";
 import { FiMessageSquare } from "react-icons/fi";
-import { IoPersonSharp } from "react-icons/io5";
+import { GoPerson } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
@@ -13,7 +13,7 @@ export default function Nav() {
         <FiSearch />
       </Link>
       <Link to="/profile" className="p-2 text-2xl">
-        <IoPersonSharp />
+        <GoPerson />
       </Link>
     </nav>
   );
