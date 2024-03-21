@@ -1,16 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
+import { useState } from "react";
+import LogoutModal from "../../components/LogoutModal";
 
 export default function Profile() {
-  const { setToken, user } = useAuth();
+  const { user } = useAuth();
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
-  const navigation = useNavigate();
-  function handleLogout() {
-    setToken();
-    navigation("/", { replace: true });
-  }
-
-  console.log(user);
+  console.log(logoutModalOpen);
   return (
     user && (
       <div className="flex h-screen flex-col">
@@ -28,9 +25,15 @@ export default function Profile() {
         </div>
         <div className="flex flex-col gap-6 p-4 text-lg">
           <Link>Following</Link>
-          <button onClick={handleLogout} className="text-start">
+          <button
+            onClick={() => setLogoutModalOpen(true)}
+            className="text-start"
+          >
             Logout
           </button>
+          {logoutModalOpen && (
+            <LogoutModal setLogoutModalOpen={setLogoutModalOpen} />
+          )}
           <button className="text-start">Theme Mode</button>
         </div>
       </div>
