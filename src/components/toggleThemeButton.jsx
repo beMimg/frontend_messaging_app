@@ -8,7 +8,7 @@ export default function ToggleThemeButton() {
   return (
     <div className="h-10 w-min text-black " onClick={setTheme}>
       {themeMode === "dark" ? (
-        <LuSun className="cursor-pointer text-2xl " />
+        <LuSun className="cursor-pointer text-2xl text-white " />
       ) : (
         <IoMdMoon className="cursor-pointer text-2xl " />
       )}
