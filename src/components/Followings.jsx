@@ -35,7 +35,7 @@ export default function Followings() {
           <h1 className="text-md items-center font-semibold">Following</h1>
           <p className="text-center">{followings.length}</p>
         </div>
-        <div className=" h-[200px]">
+        <div className=" h-[150px]">
           {followings.map((follow) => (
             <Link to={`/users/${follow._id}`} key={follow._id}>
               <div className="h-[60px] w-[60px] rounded-full bg-teal-600"></div>

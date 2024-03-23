@@ -1,15 +1,15 @@
 import { useAuth } from "../../context/authProvider";
 import Followings from "../../components/Followings";
-import MessagesHeader from "../../components/MessagesHeader";
+import MessagesPageHeader from "../../components/MessagesPageHeader";
 
-export default function Messages() {
+export default function MessagesPage() {
   const { user } = useAuth();
 
   return (
     <div className="p-6">
       {user && (
         <div>
-          <MessagesHeader />
+          <MessagesPageHeader />
           <div className="mt-4">
             <Followings />
           </div>

@@ -1,7 +1,7 @@
 import { useAuth } from "../context/authProvider";
 import { SlOptionsVertical } from "react-icons/sl";
 
-export default function MessagesHeader() {
+export default function MessagesPageHeader() {
   const { user } = useAuth();
 
   return (

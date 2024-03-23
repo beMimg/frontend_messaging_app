@@ -11,7 +11,7 @@ import AboutUs from "./page/PublicPages/AboutUs";
 //  Authenticated Routes:
 import AuthenticatedLayout from "./page/AuthenticatedPages/AuthenticatedLayout";
 import { useAuth } from "./context/authProvider";
-import Messages from "./page/AuthenticatedPages/Messages";
+import MessagesPage from "./page/AuthenticatedPages/MessagesPage";
 import VisitedProfile from "./page/AuthenticatedPages/VisitedProfile";
 import Profile from "./page/AuthenticatedPages/Profile";
 
@@ -32,7 +32,7 @@ const Routes = () => {
       path: "/",
       element: <AuthenticatedLayout />,
       children: [
-        { index: true, element: <Messages /> },
+        { index: true, element: <MessagesPage /> },
         { path: "/users/:id", element: <VisitedProfile /> },
         { path: "/profile", element: <Profile /> },
       ],
