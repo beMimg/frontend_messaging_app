@@ -1,6 +1,7 @@
 import { IoMdClose } from "react-icons/io";
 import { useAuth } from "../context/authProvider";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../context/themeProvider";
 
 export default function LogoutModal({ setLogoutModalOpen }) {
   const { setToken } = useAuth();
@@ -10,7 +11,14 @@ export default function LogoutModal({ setLogoutModalOpen }) {
   function handleLogout() {
     // remove token and go back go root
     setToken();
+    localStorage.removeItem("theme");
     navigation("/", { replace: true });
+    // Theme will not be in localStorage but,
+    // at the moment of navigation to '/', it still was,
+    // so the style of dark persists, for this reason refresh,
+    // to populate the page with the light theme.
+    // Dark theme is only for user interface.
+    window.location.reload();
   }
 
   return (
