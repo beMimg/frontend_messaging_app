@@ -34,8 +34,11 @@ export default function Conversation({ conversation_id }) {
       <header>
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
-      <div className="flex-1 p-2 dark:bg-neutral-900">
-        <Messages conversation_id={conversation_id} />
+      <div className="flex-1 overflow-scroll p-2 dark:bg-neutral-900 ">
+        <Messages
+          conversation_id={conversation_id}
+          conversationDetails={conversationDetails}
+        />
       </div>
       <div>
         <ConversationForm />
