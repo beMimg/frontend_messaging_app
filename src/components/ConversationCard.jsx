@@ -12,9 +12,10 @@ export default function ConversationCard({ conversation }) {
 
   const lastMessageSmaller = conversation.lastMessage.content.slice(0, 30);
 
+  console.log(conversation);
   return (
     <Link
-      to={`/conversation/${conversation.conversation_id}`}
+      to={`/conversation/${conversation.conversation_id}/${conversation.participant._id}`}
       className="relative flex flex-row gap-3 py-1"
     >
       {conversation.participant.profile_pic_src ? (

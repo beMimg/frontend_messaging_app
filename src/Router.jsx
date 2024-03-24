@@ -14,7 +14,7 @@ import { useAuth } from "./context/authProvider";
 import MessagesPage from "./page/AuthenticatedPages/MessagesPage";
 import VisitedProfile from "./page/AuthenticatedPages/VisitedProfile";
 import Profile from "./page/AuthenticatedPages/Profile";
-import Conversation from "./page/AuthenticatedPages/ConversationPage";
+import ConversationPage from "./page/AuthenticatedPages/ConversationPage";
 
 const Routes = () => {
   // Use Context of Authorization
@@ -36,7 +36,10 @@ const Routes = () => {
         { index: true, element: <MessagesPage /> },
         { path: "/users/:id", element: <VisitedProfile /> },
         { path: "/profile", element: <Profile /> },
-        { path: "/conversation/:id", element: <Conversation /> },
+        {
+          path: "/conversation/:conversation_id/:participant_id",
+          element: <ConversationPage />,
+        },
       ],
     },
   ];

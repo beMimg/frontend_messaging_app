@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { Link } from "react-router-dom";
+import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 
 export default function Followings() {
   const [followings, setFollowings] = useState();
