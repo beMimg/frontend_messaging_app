@@ -5,7 +5,6 @@ import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 export default function MessagesPageHeader() {
   const { user } = useAuth();
 
-  console.log(user);
   return (
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-row items-center gap-2">
