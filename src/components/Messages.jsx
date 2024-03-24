@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
-import Conversation from "./Conversation";
+import ConversationCard from "./ConversationCard";
 
 export default function Messages() {
   const [conversations, setConversations] = useState();
@@ -27,7 +27,6 @@ export default function Messages() {
   if (isLoading) {
     return <p>Loading</p>;
   }
-  console.log(conversations);
 
   return (
     <div className="flex flex-col ">
@@ -35,7 +34,7 @@ export default function Messages() {
       <div className="flex flex-col gap-3">
         {conversations &&
           conversations.map((conversation) => (
-            <Conversation
+            <ConversationCard
               key={conversation.participant._id}
               conversation={conversation}
             />

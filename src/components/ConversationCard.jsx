@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import { DateTime } from "luxon";
 
-export default function Conversation({ conversation }) {
+export default function ConversationCard({ conversation }) {
   const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   // // use users time zone to format the date of comment
