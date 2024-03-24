@@ -3,6 +3,7 @@ import ConversationHeader from "./ConversationHeader";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
+import Messages from "./Messages";
 
 export default function Conversation({ conversation_id }) {
   const [conversationDetails, setConversationDetails] = useState();
@@ -33,7 +34,9 @@ export default function Conversation({ conversation_id }) {
       <header>
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
-      <div className="flex-1 p-2 dark:bg-neutral-900"></div>
+      <div className="flex-1 p-2 dark:bg-neutral-900">
+        <Messages conversation_id={conversation_id} />
+      </div>
       <div>
         <ConversationForm />
       </div>
