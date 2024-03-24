@@ -37,7 +37,7 @@ const Routes = () => {
         { path: "/users/:id", element: <VisitedProfile /> },
         { path: "/profile", element: <Profile /> },
         {
-          path: "/conversation/:conversation_id/:participant_id",
+          path: "/conversation/:conversation_id",
           element: <ConversationPage />,
         },
       ],

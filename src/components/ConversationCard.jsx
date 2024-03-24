@@ -14,7 +14,7 @@ export default function ConversationCard({ conversation }) {
 
   return (
     <Link
-      to={`/conversation/${conversation.conversation_id}/${conversation.participant._id}`}
+      to={`/conversation/${conversation.conversation_id}`}
       className="relative flex flex-row gap-3 py-1"
     >
       {conversation.participant.profile_pic_src ? (
