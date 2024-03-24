@@ -12,7 +12,6 @@ export default function ConversationCard({ conversation }) {
 
   const lastMessageSmaller = conversation.lastMessage.content.slice(0, 30);
 
-  console.log(conversation);
   return (
     <Link
       to={`/conversation/${conversation.conversation_id}/${conversation.participant._id}`}
