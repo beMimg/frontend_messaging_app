@@ -38,7 +38,17 @@ export default function Followings() {
         <div className=" h-[150px]">
           {followings.map((follow) => (
             <Link to={`/users/${follow._id}`} key={follow._id}>
-              <div className="h-[60px] w-[60px] rounded-full bg-teal-600"></div>
+              {follow.profile_pic_src ? (
+                <img
+                  src={follow.profile_pic_src}
+                  className="h-[60px] w-[60px] rounded-full border border-gray-300  object-cover object-center"
+                />
+              ) : (
+                <img
+                  src={glassesKissSvg}
+                  className="h-[60px] w-[60px] rounded-full border border-gray-300  object-cover object-center"
+                />
+              )}
             </Link>
           ))}
         </div>
