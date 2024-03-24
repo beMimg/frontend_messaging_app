@@ -18,8 +18,3 @@
 .input-default {
   @apply rounded-md border border-gray-300 p-2;
 }
-
-.dark {
-  color: white;
-  background-color: #111111;
-}
