@@ -10,14 +10,14 @@ export default function MessagesPageHeader() {
       <div className="flex flex-row items-center gap-2">
         {user.profile_pic_src ? (
           <img
-            className="h-[60px] w-[60px] rounded-full border border-gray-300  object-cover object-center"
+            className="h-[60px] w-[60px] rounded-full border-4 border-gray-200  object-cover object-center"
             src={user.profile_pic_src}
             alt=""
           />
         ) : (
           <img
             src={glassesKissSvg}
-            className="h-[60px] w-[60px] rounded-full border border-gray-300  object-cover object-center"
+            className="h-[60px] w-[60px] rounded-full border-4 border-gray-200  object-cover object-center"
           />
         )}
         <div className="flex flex-col">

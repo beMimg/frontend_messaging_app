@@ -9,6 +9,7 @@ export default function Conversation({ conversation_id }) {
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
 
+  // rerender everytime the conversation_id changes and fetch that
   useEffect(() => {
     const getConversation = async () => {
       try {
@@ -32,7 +33,7 @@ export default function Conversation({ conversation_id }) {
       <header>
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
-      <div className="flex-1 p-2"></div>
+      <div className="flex-1 p-2 dark:bg-neutral-900"></div>
       <div>
         <ConversationForm />
       </div>
