@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import MessagesPage from "./MessagesPage";
+import Conversation from "../../components/Conversation";
+import ConversationDetails from "../../components/ConversationDetails";
 
 export default function ConversationPage() {
   const { conversation_id, participant_id } = useParams();
@@ -9,11 +11,11 @@ export default function ConversationPage() {
       <div className="hidden border-r border-white dark:border-neutral-800 lg:col-span-2  lg:grid ">
         <MessagesPage />
       </div>
-      <div className=" border-r border-white p-2 dark:border-neutral-800 lg:col-span-3">
-        <h1>conversation {conversation_id}</h1>
+      <div className=" border-r border-white  dark:border-neutral-800 lg:col-span-3">
+        <Conversation conversation_id={conversation_id} />
       </div>
       <div className="hidden xl:grid xl:p-2">
-        <p>{participant_id}</p>
+        <ConversationDetails participant_id={participant_id} />
       </div>
     </div>
   );
