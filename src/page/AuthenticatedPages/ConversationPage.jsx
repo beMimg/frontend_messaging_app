@@ -11,7 +11,7 @@ export default function ConversationPage() {
       <div className="hidden border-r border-white dark:border-neutral-800 lg:col-span-2  lg:grid ">
         <MessagesPage />
       </div>
-      <div className=" border-r border-white  dark:border-neutral-800 lg:col-span-3">
+      <div className="h-screen border-r border-white dark:border-neutral-800  lg:col-span-3 lg:h-full">
         <Conversation conversation_id={conversation_id} />
       </div>
       <div className="hidden xl:grid xl:p-2">
