@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
+import Conversation from "./Conversation";
 
 export default function Messages() {
   const [conversations, setConversations] = useState();
@@ -26,32 +27,20 @@ export default function Messages() {
   if (isLoading) {
     return <p>Loading</p>;
   }
+  console.log(conversations);
+
   return (
-    <div className="flex flex-col gap-7">
-      {conversations &&
-        conversations.map((conversation) => (
-          <div
-            key={conversation.participant._id}
-            className="flex flex-row gap-3"
-          >
-            {conversation.participant.profile_pic_src ? (
-              <img
-                className="h-[60px] w-[60px]"
-                src={conversation.participant.profile_pic_src}
-                alt=""
-              />
-            ) : (
-              <p>no photo</p>
-            )}
-            <div>
-              <p>{conversation.participant.username}</p>
-              <div className="flex flex-row gap-2 text-gray-600">
-                <p>{conversation.lastMessage.sender.username}:</p>
-                <p>{conversation.lastMessage.content}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+    <div className="flex flex-col ">
+      <h1 className="py-3 text-xl font-semibold">Messages</h1>
+      <div className="flex flex-col gap-3">
+        {conversations &&
+          conversations.map((conversation) => (
+            <Conversation
+              key={conversation.participant._id}
+              conversation={conversation}
+            />
+          ))}
+      </div>
     </div>
   );
 }
