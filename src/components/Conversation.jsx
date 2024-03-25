@@ -10,14 +10,15 @@ export default function Conversation({ conversation_id }) {
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
   const [forceRerender, setForceRerender] = useState(0);
-
+  const [messages, setMessages] = useState();
   const messageContainerRef = useRef(null);
-  // rerender everytime the conversation_id changes and fetch that
+
+  // re-fetch everytime the conversation_id changes.
   useEffect(() => {
     const getConversation = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
+        const response = axios.get(
           `${API_DOMAIN}/conversation/${conversation_id}`,
         );
 
@@ -29,6 +30,25 @@ export default function Conversation({ conversation_id }) {
       }
     };
     getConversation();
+  }, [conversation_id]);
+
+  // ForceRerender as dependicies why:
+  // ConversationForm on Submit, will increment setForceRerender
+  // So every time the user sends a message, it will refetch messages.
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const response = await axios.get(
+          `${API_DOMAIN}/conversation/${conversation_id}/message`,
+        );
+
+        setMessages(response.data);
+        return;
+      } catch (err) {
+        return;
+      }
+    };
+    getMessages();
   }, [conversation_id, forceRerender]);
 
   // Scroll to the bottom of the page.
@@ -39,7 +59,7 @@ export default function Conversation({ conversation_id }) {
       messageContainerRef.current.scrollTop =
         messageContainerRef.current.scrollHeight;
     }
-  }, [conversationDetails, forceRerender]);
+  }, [messages]);
 
   return (
     <div className="flex h-[88%] flex-col lg:h-full">
@@ -53,7 +73,7 @@ export default function Conversation({ conversation_id }) {
         <Messages
           conversation_id={conversation_id}
           conversationDetails={conversationDetails}
-          forceRerender={forceRerender}
+          messages={messages}
         />
       </div>
       <div>

@@ -5,29 +5,8 @@ import { useAuth } from "../context/authProvider";
 import RecievedMessage from "./RecievedMessage";
 import SentMessage from "./SentMessage";
 
-export default function Messages({
-  conversation_id,
-  conversationDetails,
-  forceRerender,
-}) {
-  const [messages, setMessages] = useState();
+export default function Messages({ messages, conversationDetails }) {
   const { user } = useAuth();
-
-  useEffect(() => {
-    const getMessages = async () => {
-      try {
-        const response = await axios.get(
-          `${API_DOMAIN}/conversation/${conversation_id}/message`,
-        );
-
-        setMessages(response.data);
-        return;
-      } catch (err) {
-        return;
-      }
-    };
-    getMessages();
-  }, [conversation_id, forceRerender]);
 
   return (
     <div className="flex flex-col gap-8 ">
