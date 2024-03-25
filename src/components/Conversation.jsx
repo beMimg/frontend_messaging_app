@@ -46,7 +46,7 @@ export default function Conversation({ conversation_id }) {
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
       <div
-        className="flex-1 overflow-auto p-2 dark:bg-neutral-900"
+        className="flex-1 overflow-auto p-4 dark:bg-neutral-900"
         ref={messageContainerRef}
       >
         <Messages
