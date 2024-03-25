@@ -34,7 +34,7 @@ export default function MessagesPage() {
   const { user } = useAuth();
 
   return (
-    <div className="p-6">
+    <div className="w-full p-6">
       {user && (
         <div>
           <MessagesPageHeader />
