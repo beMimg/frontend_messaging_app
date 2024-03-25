@@ -5,7 +5,11 @@ import { useAuth } from "../context/authProvider";
 import RecievedMessage from "./RecievedMessage";
 import SentMessage from "./SentMessage";
 
-export default function Messages({ conversation_id, conversationDetails }) {
+export default function Messages({
+  conversation_id,
+  conversationDetails,
+  forceRerender,
+}) {
   const [messages, setMessages] = useState();
   const { user } = useAuth();
 
@@ -23,7 +27,7 @@ export default function Messages({ conversation_id, conversationDetails }) {
       }
     };
     getMessages();
-  }, [conversation_id]);
+  }, [conversation_id, forceRerender]);
 
   return (
     <div className="flex flex-col gap-8 ">

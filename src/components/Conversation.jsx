@@ -9,6 +9,7 @@ export default function Conversation({ conversation_id }) {
   const [conversationDetails, setConversationDetails] = useState();
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
+  const [forceRerender, setForceRerender] = useState(0);
 
   const messageContainerRef = useRef(null);
   // rerender everytime the conversation_id changes and fetch that
@@ -28,7 +29,7 @@ export default function Conversation({ conversation_id }) {
       }
     };
     getConversation();
-  }, [conversation_id]);
+  }, [conversation_id, forceRerender]);
 
   // Scroll to the bottom of the page.
   // Need to set conversationDetails as dependecies because,
@@ -38,7 +39,7 @@ export default function Conversation({ conversation_id }) {
       messageContainerRef.current.scrollTop =
         messageContainerRef.current.scrollHeight;
     }
-  }, [conversationDetails]);
+  }, [conversationDetails, forceRerender]);
 
   return (
     <div className="flex h-[88%] flex-col lg:h-full">
@@ -52,10 +53,14 @@ export default function Conversation({ conversation_id }) {
         <Messages
           conversation_id={conversation_id}
           conversationDetails={conversationDetails}
+          forceRerender={forceRerender}
         />
       </div>
       <div>
-        <ConversationForm conversation_id={conversation_id} />
+        <ConversationForm
+          conversation_id={conversation_id}
+          setForceRerender={setForceRerender}
+        />
       </div>
     </div>
   );

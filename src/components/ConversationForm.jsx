@@ -4,7 +4,10 @@ import axios from "axios";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { useState } from "react";
 
-export default function ConversationForm({ conversation_id }) {
+export default function ConversationForm({
+  conversation_id,
+  setForceRerender,
+}) {
   const [content, setContent] = useState("");
 
   async function handleSubmit(e) {
@@ -15,6 +18,10 @@ export default function ConversationForm({ conversation_id }) {
         { content: content },
         {},
       );
+      setContent("");
+      setForceRerender((prevRender) => {
+        return prevRender + 1;
+      });
       return console.log(response);
     } catch (err) {
       return console.log(err);
