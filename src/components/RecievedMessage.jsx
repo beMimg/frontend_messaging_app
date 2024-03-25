@@ -5,7 +5,7 @@ export default function RecievedMessage({ conversationDetails, message }) {
   const formattedDate = formatDate(message.timestamp);
 
   return (
-    <div key={message._id} className="flex flex-row gap-3">
+    <div className="flex flex-row gap-3">
       {conversationDetails &&
       conversationDetails.participant[0].profile_pic_src ? (
         <img

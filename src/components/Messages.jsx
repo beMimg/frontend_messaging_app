@@ -19,7 +19,7 @@ export default function Messages({ conversation_id, conversationDetails }) {
         setMessages(response.data);
         return;
       } catch (err) {
-        console.log(err);
+        return;
       }
     };
     getMessages();
@@ -30,13 +30,14 @@ export default function Messages({ conversation_id, conversationDetails }) {
       {messages &&
         user &&
         messages.allMessages.map((message) =>
-          message.sender === user._id ? (
+          message.sender !== user._id ? (
             <RecievedMessage
+              key={message._id}
               conversationDetails={conversationDetails}
               message={message}
             />
           ) : (
-            <SentMessage message={message} />
+            <SentMessage message={message} key={message._id} />
           ),
         )}
     </div>

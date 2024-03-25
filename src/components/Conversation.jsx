@@ -55,7 +55,7 @@ export default function Conversation({ conversation_id }) {
         />
       </div>
       <div>
-        <ConversationForm />
+        <ConversationForm conversation_id={conversation_id} />
       </div>
     </div>
   );
