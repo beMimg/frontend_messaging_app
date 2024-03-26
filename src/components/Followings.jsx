@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { Link } from "react-router-dom";
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
+import DefaultImage from "./DefaultImage";
 
 export default function Followings() {
   const [followings, setFollowings] = useState();
@@ -36,19 +37,16 @@ export default function Followings() {
           <h1 className="text-md items-center font-semibold">Following</h1>
           <p className="text-center">{followings.length}</p>
         </div>
-        <div className=" h-[150px]">
+        <div className=" flex h-[80px] flex-row gap-2">
           {followings.map((follow) => (
             <Link to={`/users/${follow._id}`} key={follow._id}>
               {follow.profile_pic_src ? (
                 <img
                   src={follow.profile_pic_src}
-                  className="h-[60px] w-[60px] rounded-full border-4 border-gray-200  object-cover object-center"
+                  className="h-[60px] w-[60px] rounded-full border-2 border-gray-200  object-cover object-center"
                 />
               ) : (
-                <img
-                  src={glassesKissSvg}
-                  className="h-[60px] w-[60px] rounded-full border-4 border-gray-200  object-cover object-center"
-                />
+                <DefaultImage size="full" />
               )}
             </Link>
           ))}

@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import { DateTime } from "luxon";
+import DefaultImage from "./DefaultImage";
 
 export default function ConversationCard({ conversation }) {
   const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -27,10 +28,7 @@ export default function ConversationCard({ conversation }) {
           alt=""
         />
       ) : (
-        <img
-          src={glassesKissSvg}
-          className="h-[60px] w-[60px] rounded-full border-2 border-gray-200 object-cover object-center"
-        />
+        <DefaultImage size="[60px]" />
       )}
       <div className="flex w-full flex-row items-center justify-between">
         <div className="flex flex-col justify-center">

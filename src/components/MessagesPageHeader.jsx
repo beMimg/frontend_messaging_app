@@ -1,6 +1,7 @@
 import { useAuth } from "../context/authProvider";
 import { SlOptionsVertical } from "react-icons/sl";
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
+import DefaultImage from "./DefaultImage";
 
 export default function MessagesPageHeader() {
   const { user } = useAuth();
@@ -15,10 +16,7 @@ export default function MessagesPageHeader() {
             alt=""
           />
         ) : (
-          <img
-            src={glassesKissSvg}
-            className="h-[60px] w-[60px] rounded-full border-4 border-gray-200  object-cover object-center"
-          />
+          <DefaultImage size="[60px]" />
         )}
         <div className="flex flex-col">
           <h1 className="pr-2 font-semibold">{user.first_name} </h1>

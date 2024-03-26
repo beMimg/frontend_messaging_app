@@ -18,3 +18,7 @@
 .input-default {
   @apply rounded-md border border-gray-300 p-2;
 }
+
+.hover-display:hover .hover-display-match {
+  display: flex;
+}
