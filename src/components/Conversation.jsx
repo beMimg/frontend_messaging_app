@@ -52,8 +52,8 @@ export default function Conversation({ conversation_id }) {
   }, [conversation_id, forceRerender]);
 
   // Scroll to the bottom of the page.
-  // Need to set conversationDetails as dependecies because,
-  // There's no height without those conversationDetails.
+  // messages as dependicies so everytime there's a new message
+  // it will go to the bottom.
   useEffect(() => {
     if (messageContainerRef.current) {
       messageContainerRef.current.scrollTop =

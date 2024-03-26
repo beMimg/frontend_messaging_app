@@ -29,7 +29,7 @@ export default function ConversationForm({
   }
 
   return (
-    <div className="dark: flex w-full flex-row items-center gap-4  bg-gradient-to-br from-white to-gray-200  p-2 dark:from-gray-400 dark:to-neutral-800">
+    <div className="dark: flex w-full flex-row items-center gap-4  bg-gradient-to-br from-white to-gray-200  p-2 dark:from-neutral-600 dark:to-neutral-800">
       <FaPlus />
       <form
         className="flex w-full  flex-1 flex-row gap-2"
@@ -45,9 +45,9 @@ export default function ConversationForm({
         />
         <button
           type="submit"
-          className="  rounded-full bg-gradient-to-b from-rose-500 to-rose-900 p-2 text-center text-lg text-white"
+          className="  rounded-full bg-gradient-to-r from-neutral-600 to-neutral-800 p-2 text-center text-lg text-white"
         >
-          <IoSend />
+          <IoSend className=" -rotate-45" />
         </button>
       </form>
     </div>
