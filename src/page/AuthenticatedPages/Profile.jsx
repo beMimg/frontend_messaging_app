@@ -6,10 +6,13 @@ import ToggleThemeButton from "../../components/toggleThemeButton";
 import { GoPencil } from "react-icons/go";
 import DefaultImage from "../../components/DefaultImage";
 import EditProfilePic from "../../components/EditProfilePic";
+import EditProfileBio from "../../components/EditProfileBio";
 
 export default function Profile() {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
   const [isEditProfilePicOpen, setIsProfilePicOpen] = useState(false);
+  const [isEditBioOpen, setIsEditBioOpen] = useState();
+
   const { user } = useAuth();
 
   return (
@@ -19,7 +22,16 @@ export default function Profile() {
           <div className=" h-[180px] w-full bg-gradient-to-b from-rose-500 to-rose-900 lg:h-[300px] lg:rounded-t-lg"></div>
           <div className=" absolute -bottom-[50px] flex w-full items-center justify-center lg:-bottom-[100px]">
             <div className="hover-display relative h-[100px] w-[100px] lg:h-[200px] lg:w-[200px]">
-              <DefaultImage size="full" />
+              {user.profile_pic_src ? (
+                <img
+                  src={user.profile_pic_src}
+                  alt=""
+                  className="h-full w-full rounded-full border-2 border-gray-200 object-cover object-center"
+                />
+              ) : (
+                <DefaultImage size="full" />
+              )}
+
               <div
                 onClick={() => setIsProfilePicOpen(true)}
                 className="hover-display-match absolute left-0 top-0 z-40 hidden   h-full w-full cursor-pointer items-center justify-center rounded-full  bg-black text-4xl opacity-45"
@@ -33,12 +45,15 @@ export default function Profile() {
           <h1 className="text-lg font-semibold">
             {user.first_name} @{user.username}
           </h1>
-          {user.bio ? (
-            <p>{user.bio}</p>
-          ) : (
-            <button className="flex flex-row items-center gap-2 opacity-60">
-              Write your bio <GoPencil />
+          {!isEditBioOpen ? (
+            <button
+              onClick={() => setIsEditBioOpen(true)}
+              className="flex flex-row items-center gap-2 opacity-60"
+            >
+              {user.bio ? user.bio : "Write your bio"} <GoPencil />
             </button>
+          ) : (
+            <EditProfileBio user={user} setIsEditBioOpen={setIsEditBioOpen} />
           )}
         </div>
         <div className="flex w-min flex-col gap-10 p-4 text-lg">
