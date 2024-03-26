@@ -5,9 +5,11 @@ import LogoutModal from "../../components/LogoutModal";
 import ToggleThemeButton from "../../components/toggleThemeButton";
 import { GoPencil } from "react-icons/go";
 import DefaultImage from "../../components/DefaultImage";
+import EditProfilePic from "../../components/EditProfilePic";
 
 export default function Profile() {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const [isEditProfilePicOpen, setIsProfilePicOpen] = useState(false);
   const { user } = useAuth();
 
   return (
@@ -18,7 +20,10 @@ export default function Profile() {
           <div className=" absolute -bottom-[50px] flex w-full items-center justify-center lg:-bottom-[100px]">
             <div className="hover-display relative h-[100px] w-[100px] lg:h-[200px] lg:w-[200px]">
               <DefaultImage size="full" />
-              <div className="hover-display-match absolute left-0 top-0 z-50 hidden   h-full w-full cursor-pointer items-center justify-center rounded-full  bg-black text-4xl opacity-45">
+              <div
+                onClick={() => setIsProfilePicOpen(true)}
+                className="hover-display-match absolute left-0 top-0 z-40 hidden   h-full w-full cursor-pointer items-center justify-center rounded-full  bg-black text-4xl opacity-45"
+              >
                 <GoPencil />
               </div>
             </div>
@@ -49,6 +54,9 @@ export default function Profile() {
           )}
           <ToggleThemeButton />
         </div>
+        {isEditProfilePicOpen && (
+          <EditProfilePic setIsProfilePicOpen={setIsProfilePicOpen} />
+        )}
       </div>
     )
   );
