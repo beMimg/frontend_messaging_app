@@ -18,10 +18,9 @@ export default function Conversation({ conversation_id }) {
     const getConversation = async () => {
       try {
         setIsLoading(true);
-        const response = axios.get(
+        const response = await axios.get(
           `${API_DOMAIN}/conversation/${conversation_id}`,
         );
-
         return setConversationDetails(response.data);
       } catch (err) {
         return setErrors(err.response.data.errors);
@@ -63,7 +62,7 @@ export default function Conversation({ conversation_id }) {
 
   return (
     <div className="flex h-[88%] flex-col lg:h-full">
-      <header>
+      <header className="h-[80px]">
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
       <div

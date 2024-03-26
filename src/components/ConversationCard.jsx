@@ -8,7 +8,7 @@ export default function ConversationCard({ conversation }) {
   // // use users time zone to format the date of comment
   const formattedDate = DateTime.fromISO(conversation.lastMessage.timestamp)
     .setZone(userTimeZone)
-    .toLocaleString(DateTime.DATETIME_MED);
+    .toLocaleString(DateTime.DATETIME_SHORT);
 
   const lastMessageSmaller = conversation.lastMessage.content.slice(0, 30);
 
@@ -32,13 +32,13 @@ export default function ConversationCard({ conversation }) {
           className="h-[60px] w-[60px] rounded-full border-2 border-gray-200 object-cover object-center"
         />
       )}
-      <div className="flex flex-col justify-center">
-        <p>{conversation.participant.username}</p>
-        <p className="text-s text-gray-500">{lastMessageSmaller}...</p>
+      <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex flex-col justify-center">
+          <p>{conversation.participant.username}</p>
+          <p className="text-s text-gray-500">{lastMessageSmaller}...</p>
+        </div>
+        <p className=" p-2 text-xs">{formattedDate}</p>
       </div>
-      <p className="absolute -bottom-0 right-0 text-xs text-gray-500">
-        {formattedDate}
-      </p>
     </NavLink>
   );
 }

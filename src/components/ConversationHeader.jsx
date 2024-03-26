@@ -1,15 +1,16 @@
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import { Link } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
+import { useAuth } from "../context/authProvider";
 
 export default function ConversationHeader({ conversationDetails }) {
   return (
-    <div className="flex flex-row gap-2 p-2">
+    <div className="flex h-full flex-row gap-2">
       {conversationDetails && (
         <>
           <Link
             to={`/users/${conversationDetails.participant[0]._id}`}
-            className="flex flex-row gap-2 p-2"
+            className="flex flex-row items-center gap-2 p-2"
           >
             {conversationDetails.participant[0].profile_pic_src ? (
               <img
@@ -27,7 +28,7 @@ export default function ConversationHeader({ conversationDetails }) {
               <p>@{conversationDetails.participant[0].username}</p>
             </div>
           </Link>
-          <button className="item-center ml-auto self-center">
+          <button className="item-center ml-auto self-center pr-2">
             <SlOptionsVertical />
           </button>
         </>
