@@ -43,7 +43,7 @@ export default function Followings() {
               {follow.profile_pic_src ? (
                 <img
                   src={follow.profile_pic_src}
-                  className="h-[60px] w-[60px] rounded-full border-2 border-gray-200  object-cover object-center"
+                  className="h-[80px] w-[80px] rounded-full border-2 border-gray-200 object-cover object-center"
                 />
               ) : (
                 <DefaultImage size="full" />

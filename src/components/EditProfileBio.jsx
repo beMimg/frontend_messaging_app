@@ -15,7 +15,6 @@ export default function EditProfileBio({ user, setIsEditBioOpen }) {
       return;
     }
   }
-  console.log(bio);
   return (
     <form className="flex flex-row gap-2" onSubmit={handleEdit}>
       <input
