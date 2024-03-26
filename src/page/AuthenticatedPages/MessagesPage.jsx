@@ -34,15 +34,17 @@ export default function MessagesPage() {
   const { user } = useAuth();
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full ">
       {user && (
         <div>
-          <MessagesPageHeader />
-          <div className="mt-4">
+          <div className="p-4">
+            <MessagesPageHeader />
+          </div>
+          <div className="mt-4 p-4">
             <Followings />
           </div>
           <div className="flex flex-col ">
-            <h1 className="py-3 text-xl font-semibold">Messages</h1>
+            <h1 className="p-4 py-3 text-lg uppercase">Messages</h1>
             <div className="flex flex-col gap-3">
               {conversations &&
                 conversations.map((conversation) => (

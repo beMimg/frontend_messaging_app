@@ -29,7 +29,7 @@ export default function ConversationForm({
   }
 
   return (
-    <div className="dark: flex w-full flex-row items-center gap-4  bg-gradient-to-br from-white to-gray-200  p-2 dark:from-neutral-600 dark:to-neutral-800">
+    <div className="dark: flex w-full flex-row items-center gap-4  bg-gradient-to-br from-white to-gray-200  p-2 pl-5 dark:from-neutral-600 dark:to-neutral-800">
       <FaPlus />
       <form
         className="flex w-full  flex-1 flex-row gap-2"
@@ -39,7 +39,7 @@ export default function ConversationForm({
           type="text"
           name="content"
           placeholder="Type your message.."
-          className=" w-full bg-transparent  p-2"
+          className=" w-full bg-transparent p-2 placeholder:text-white"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
