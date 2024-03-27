@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { API_DOMAIN } from "../../utils/API_DOMAIN";
 import DefaultImage from "../../components/DefaultImage";
 import { useAuth } from "../../context/authProvider";
+import FollowUnfollowButton from "../../components/FollowUnfollowBtn";
 
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
@@ -51,37 +52,37 @@ export default function VisitedProfile() {
   // {user} might not be populated yet. Causing the if statement inside the useEffect, to setIsFollowed
   //  to false, because the user does not exist. Therefore, the if statement doesn't run.
 
-  async function unfollowUser() {
-    try {
-      const response = await axios.delete(
-        `${API_DOMAIN}/users/follow/${visitedUser._id}`,
-      );
-      // After delete, if the the user is not following the visited user, setIsFollowed to false.
-      // It's important to create the if statement and check if the user is really following the visited user
-      // in the database. Even tho we await the response (meaning it completed the delete request).
-      if (user && !user.following.includes(visitedUser._id)) {
-        setIsFollowed(false);
-      }
+  // async function unfollowUser() {
+  //   try {
+  //     const response = await axios.delete(
+  //       `${API_DOMAIN}/users/follow/${visitedUser._id}`,
+  //     );
+  // After delete, if the the user is not following the visited user, setIsFollowed to false.
+  // It's important to create the if statement and check if the user is really following the visited user
+  // in the database. Even tho we await the response (meaning it completed the delete request).
+  //     if (user && !user.following.includes(visitedUser._id)) {
+  //       setIsFollowed(false);
+  //     }
 
-      return;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //     return;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  async function followUser() {
-    try {
-      const response = await axios.post(
-        `${API_DOMAIN}/users/follow/${visitedUser._id}`,
-      );
-      if (user && !user.following.includes(visitedUser._id)) {
-        setIsFollowed(true);
-      }
-      return;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function followUser() {
+  //   try {
+  //     const response = await axios.post(
+  //       `${API_DOMAIN}/users/follow/${visitedUser._id}`,
+  //     );
+  //     if (user && !user.following.includes(visitedUser._id)) {
+  //       setIsFollowed(true);
+  //     }
+  //     return;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   if (errors) {
     return <p>{errors}</p>;
@@ -116,11 +117,11 @@ export default function VisitedProfile() {
           <p className="opacity-60">
             {visitedUser.bio ? visitedUser.bio : "This user has no bio..."}
           </p>
-          {isFollowed ? (
-            <button onClick={unfollowUser}>Unfollow</button>
-          ) : (
-            <button onClick={followUser}>Follow</button>
-          )}
+          <FollowUnfollowButton
+            isFollowed={isFollowed}
+            setIsFollowed={setIsFollowed}
+            visitedUser={visitedUser}
+          />
         </div>
       </div>
     )
