@@ -8,6 +8,7 @@ import { useAuth } from "../../context/authProvider";
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
   const [isFollowed, setIsFollowed] = useState();
+  const [isLoading, setIsLoading] = useState();
   const { id } = useParams();
 
   const { user } = useAuth();
@@ -19,45 +20,50 @@ export default function VisitedProfile() {
         setVisitedUser(response.data.user);
         // If the user logged is following the visitedUser._id
         // set followed to true
-        if (user && user.following.includes(visitedUser._id)) {
-          setIsFollowed(true);
+        if (user && user.following.includes(response.data.user._id)) {
+          return setIsFollowed(true);
         }
-        return;
+        return setIsFollowed(false);
       } catch (err) {
-        return;
+        console.log(err);
       }
     };
     getUser();
-  }, []);
+  }, [user]);
+  // We need to set user as a dependecies because when we refresh a page (without [user]),
+  // {user} might not be populated yet. Causing the if statement inside
+  // the useEffect, to setIsFollowed to false, because the user does not exist.
+  // Therefore, the if statement doesn't run.
 
   async function unfollowUser() {
     try {
       const response = await axios.delete(
         `${API_DOMAIN}/users/follow/${visitedUser._id}`,
       );
-      // after deletion, will check if the the user is not following the visited user
-      // setIsFollowed to false
+      // After delete, if the the user is not following the visited user, setIsFollowed to false.
+      // It's important to create the if statement and check if the user is really following
+      // the visited user in the database. Even tho we await the response (meaning it completed the delete request).
       if (user && !user.following.includes(visitedUser._id)) {
         setIsFollowed(false);
       }
+
       return;
     } catch (err) {
-      return;
+      console.log(err);
     }
   }
+
   async function followUser() {
     try {
       const response = await axios.post(
         `${API_DOMAIN}/users/follow/${visitedUser._id}`,
       );
-      // after following, will check if the the user is  following the visited user
-      // setIsFollowed to true
       if (user && !user.following.includes(visitedUser._id)) {
         setIsFollowed(true);
       }
       return;
     } catch (err) {
-      return;
+      console.log(err);
     }
   }
 
