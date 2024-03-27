@@ -66,7 +66,7 @@ export default function Conversation({ conversation_id }) {
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
       <div
-        className="background-message flex-1 overflow-auto p-4 "
+        className="background-message flex-1 overflow-auto p-4"
         ref={messageContainerRef}
       >
         <Messages
