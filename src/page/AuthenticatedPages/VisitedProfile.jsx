@@ -9,6 +9,8 @@ export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
   const [isFollowed, setIsFollowed] = useState();
   const [isLoading, setIsLoading] = useState();
+  const [errors, setErrors] = useState();
+
   const { id } = useParams();
 
   const { user } = useAuth();
@@ -16,24 +18,38 @@ export default function VisitedProfile() {
   useEffect(() => {
     const getUser = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(`${API_DOMAIN}/users/${id}`);
         setVisitedUser(response.data.user);
         // If the user logged is following the visitedUser._id
         // set followed to true
         if (user && user.following.includes(response.data.user._id)) {
-          return setIsFollowed(true);
+          setIsFollowed(true);
+          setIsLoading(false);
+          return;
         }
-        return setIsFollowed(false);
+        setIsFollowed(false);
+        setIsLoading(false);
+        return;
       } catch (err) {
-        console.log(err);
+        return setErrors("We apologize, could not fetch this user...");
       }
     };
-    getUser();
+
+    // Conditionally calling the getUser function ensures that it's executed only when a valid user exists.
+    // Without this check, the useEffect hook would run on component mount, potentially triggering an error
+    // if the user is not yet populated (i.e., null or undefined). By verifying the existence of the user,
+    // we prevent setting an error unnecessarily during initial mounting. Additionally, this prevents the
+    // persistence of any error state from the initial mount, even if the user becomes defined later and the
+    // useEffect reruns due to changes in dependencies. This approach ensures a smoother handling of errors
+    // and avoids unnecessary re-renders caused by state inconsistencies.
+    if (user) {
+      getUser();
+    }
   }, [user]);
   // We need to set user as a dependecies because when we refresh a page (without [user]),
-  // {user} might not be populated yet. Causing the if statement inside
-  // the useEffect, to setIsFollowed to false, because the user does not exist.
-  // Therefore, the if statement doesn't run.
+  // {user} might not be populated yet. Causing the if statement inside the useEffect, to setIsFollowed
+  //  to false, because the user does not exist. Therefore, the if statement doesn't run.
 
   async function unfollowUser() {
     try {
@@ -41,8 +57,8 @@ export default function VisitedProfile() {
         `${API_DOMAIN}/users/follow/${visitedUser._id}`,
       );
       // After delete, if the the user is not following the visited user, setIsFollowed to false.
-      // It's important to create the if statement and check if the user is really following
-      // the visited user in the database. Even tho we await the response (meaning it completed the delete request).
+      // It's important to create the if statement and check if the user is really following the visited user
+      // in the database. Even tho we await the response (meaning it completed the delete request).
       if (user && !user.following.includes(visitedUser._id)) {
         setIsFollowed(false);
       }
@@ -65,6 +81,13 @@ export default function VisitedProfile() {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  if (errors) {
+    return <p>{errors}</p>;
+  }
+  if (isLoading) {
+    return <p>LOADING......................</p>;
   }
 
   return (
