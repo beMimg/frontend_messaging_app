@@ -29,7 +29,7 @@ export default function ConversationForm({
   }
 
   return (
-    <div className="flex w-full flex-row items-center gap-4  bg-gradient-to-br from-gray-300 to-gray-200  p-2 pl-5 dark:from-neutral-600 dark:to-neutral-800">
+    <div className="flex w-full flex-row items-center gap-4  bg-gray-100 p-2 pl-5 dark:bg-neutral-800 ">
       <FaPlus />
       <form
         className="flex w-full  flex-1 flex-row gap-2"

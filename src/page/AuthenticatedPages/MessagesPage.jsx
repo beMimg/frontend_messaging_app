@@ -37,7 +37,7 @@ export default function MessagesPage() {
     <div className="w-full ">
       {user && (
         <div>
-          <div className="p-4">
+          <div>
             <MessagesPageHeader />
           </div>
           <div className="mt-4 p-4">

@@ -1,13 +1,12 @@
 import { useAuth } from "../context/authProvider";
 import { SlOptionsVertical } from "react-icons/sl";
-import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import DefaultImage from "./DefaultImage";
 
 export default function MessagesPageHeader() {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-row items-center justify-between">
+    <div className="flex flex-row items-center justify-between bg-gray-100 p-3 dark:bg-neutral-800">
       <div className="flex flex-row items-center gap-2">
         {user.profile_pic_src ? (
           <img

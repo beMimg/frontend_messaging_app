@@ -15,7 +15,7 @@ export default function ConversationCard({ conversation }) {
 
   const linkStyle = "relative flex flex-row gap-3 px-4 py-2";
   const activeLinkStyle =
-    "relative flex flex-row gap-3 px-4 py-2 dark:bg-neutral-950 bg-gray-400";
+    "relative flex flex-row gap-3 px-4 py-2 dark:bg-neutral-800 bg-gray-100";
   return (
     <NavLink
       to={`/conversation/${conversation.conversation_id}`}
