@@ -6,7 +6,6 @@ import DefaultImage from "../../components/DefaultImage";
 import { useAuth } from "../../context/authProvider";
 import FollowUnfollowButton from "../../components/FollowUnfollowBtn";
 import formatDate from "../../utils/formatDate";
-import { IoSend } from "react-icons/io5";
 import SendOrStartConversationButton from "../../components/SendOrStartConvoButton";
 
 export default function VisitedProfile() {
@@ -17,7 +16,6 @@ export default function VisitedProfile() {
 
   const { id } = useParams();
 
-  const navigation = useNavigate();
   const { user } = useAuth();
 
   useEffect(() => {
