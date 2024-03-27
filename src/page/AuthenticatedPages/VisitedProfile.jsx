@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_DOMAIN } from "../../utils/API_DOMAIN";
 import DefaultImage from "../../components/DefaultImage";
 import { useAuth } from "../../context/authProvider";
 import FollowUnfollowButton from "../../components/FollowUnfollowBtn";
 import formatDate from "../../utils/formatDate";
+import { IoSend } from "react-icons/io5";
+import SendOrStartConversationButton from "../../components/SendOrStartConvoButton";
 
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
@@ -15,6 +17,7 @@ export default function VisitedProfile() {
 
   const { id } = useParams();
 
+  const navigation = useNavigate();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -22,7 +25,7 @@ export default function VisitedProfile() {
       try {
         setIsLoading(true);
         const response = await axios.get(`${API_DOMAIN}/users/${id}`);
-        setVisitedUser(response.data.user);
+        setVisitedUser(response.data);
         // If the user logged is following the visitedUser._id
         // set followed to true
         if (user && user.following.includes(response.data.user._id)) {
@@ -67,9 +70,9 @@ export default function VisitedProfile() {
           <div className=" h-[180px] w-full bg-gradient-to-b from-rose-500 to-rose-900 lg:h-[300px] lg:rounded-t-lg"></div>
           <div className=" absolute -bottom-[50px] flex w-full items-center justify-center lg:-bottom-[100px]">
             <div className="hover-display relative h-[100px] w-[100px] lg:h-[200px] lg:w-[200px]">
-              {visitedUser.profile_pic_src ? (
+              {visitedUser.user.profile_pic_src ? (
                 <img
-                  src={visitedUser.profile_pic_src}
+                  src={visitedUser.user.profile_pic_src}
                   alt=""
                   className="h-full w-full rounded-full border-2 border-gray-200 object-cover object-center"
                 />
@@ -81,27 +84,30 @@ export default function VisitedProfile() {
         </div>
         <div className="flex flex-col items-center justify-center gap-6">
           <h1 className="text-lg font-semibold">
-            {visitedUser.first_name} @{visitedUser.username}
+            {visitedUser.user.first_name} @{visitedUser.user.username}
           </h1>
           <div className="flex flex-col items-center ">
             <p className="font-semibold">About me:</p>
             <p className="opacity-70">
-              {visitedUser.bio ? visitedUser.bio : "This user has no bio..."}
+              {visitedUser.user.bio
+                ? visitedUser.user.bio
+                : "This user has no bio..."}
             </p>
           </div>
 
           <div className="flex flex-col items-center ">
             <p className="font-semibold">Member since:</p>
             <p className="text-s opacity-70">
-              {formatDate(visitedUser.utc_creation)}
+              {formatDate(visitedUser.user.utc_creation)}
             </p>
           </div>
 
           <FollowUnfollowButton
             isFollowed={isFollowed}
             setIsFollowed={setIsFollowed}
-            visitedUser={visitedUser}
+            visitedUser={visitedUser.user}
           />
+          <SendOrStartConversationButton visitedUser={visitedUser} />
         </div>
       </div>
     )
