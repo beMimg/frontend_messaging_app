@@ -13,9 +13,10 @@ export default function ConversationCard({ conversation }) {
 
   const lastMessageSmaller = conversation.lastMessage.content.slice(0, 30);
 
-  const linkStyle = "relative flex flex-row gap-3 px-4 py-2";
+  const linkStyle =
+    "relative flex flex-row gap-3 px-4 py-2 hover:bg-stone-100 h-[85px]  dark:hover:bg-zinc-800 border-b border-gray-300 dark:border-neutral-700";
   const activeLinkStyle =
-    "relative flex flex-row gap-3 px-4 py-2 dark:bg-neutral-800 bg-gray-100";
+    "relative flex flex-row gap-3 px-4 py-2 dark:bg-neutral-800 h-[85px] bg-gray-100  border-b border-gray-300 dark:border-neutral-700";
   return (
     <NavLink
       to={`/conversation/${conversation.conversation_id}`}
@@ -30,7 +31,7 @@ export default function ConversationCard({ conversation }) {
       ) : (
         <DefaultImage size="[60px]" />
       )}
-      <div className="flex w-full flex-row items-center justify-between">
+      <div className="flex w-full flex-row items-center justify-between ">
         <div className="flex flex-col justify-center">
           <p>{conversation.participant.username}</p>
           <p className="text-s text-gray-500">{lastMessageSmaller}...</p>

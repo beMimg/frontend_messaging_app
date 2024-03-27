@@ -45,7 +45,7 @@ export default function MessagesPage() {
           </div>
           <div className="flex flex-col ">
             <h1 className="p-4 py-3 text-lg font-semibold">Messages</h1>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col ">
               {conversations &&
                 conversations.map((conversation) => (
                   <ConversationCard
