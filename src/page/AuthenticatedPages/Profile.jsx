@@ -19,7 +19,7 @@ export default function Profile() {
     user && (
       <div className="flex w-full flex-col">
         <div className="relative mb-14 lg:mb-32">
-          <div className=" h-[180px] w-full bg-gradient-to-b from-rose-500 to-rose-900 lg:h-[300px] lg:rounded-t-lg"></div>
+          <div className=" h-[180px] w-full bg-gradient-to-b from-teal-500 to-teal-700 lg:h-[300px] "></div>
           <div className=" absolute -bottom-[50px] flex w-full items-center justify-center lg:-bottom-[100px]">
             <div className="hover-display relative h-[100px] w-[100px] lg:h-[200px] lg:w-[200px]">
               {user.profile_pic_src ? (

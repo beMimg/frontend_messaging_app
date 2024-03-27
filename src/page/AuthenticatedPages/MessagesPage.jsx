@@ -44,7 +44,7 @@ export default function MessagesPage() {
             <Followings />
           </div>
           <div className="flex flex-col ">
-            <h1 className="p-4 py-3 text-lg uppercase">Messages</h1>
+            <h1 className="p-4 py-3 text-lg font-semibold">Messages</h1>
             <div className="flex flex-col gap-3">
               {conversations &&
                 conversations.map((conversation) => (

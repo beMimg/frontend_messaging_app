@@ -5,7 +5,7 @@ import { useAuth } from "../context/authProvider";
 
 export default function ConversationHeader({ conversationDetails }) {
   return (
-    <div className="flex h-full flex-row gap-2">
+    <div className="flex h-full flex-row gap-2 bg-gray-100">
       {conversationDetails && (
         <>
           <Link
