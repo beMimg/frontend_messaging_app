@@ -15,6 +15,7 @@ import MessagesPage from "./page/AuthenticatedPages/MessagesPage";
 import VisitedProfile from "./page/AuthenticatedPages/VisitedProfile";
 import Profile from "./page/AuthenticatedPages/Profile";
 import ConversationPage from "./page/AuthenticatedPages/ConversationPage";
+import ExplorePage from "./page/AuthenticatedPages/ExplorePage";
 
 const Routes = () => {
   // Use Context of Authorization
@@ -40,6 +41,7 @@ const Routes = () => {
           path: "/conversation/:conversation_id",
           element: <ConversationPage />,
         },
+        { path: "/explore", element: <ExplorePage /> },
       ],
     },
   ];

@@ -40,7 +40,7 @@ export default function MessagesPage() {
           <div>
             <MessagesPageHeader />
           </div>
-          <div className="mt-4 p-4">
+          <div className="mt-4 border-b border-gray-300 p-4 dark:border-neutral-700">
             <Followings />
           </div>
           <div className="flex flex-col ">

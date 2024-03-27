@@ -11,8 +11,8 @@ export default function Nav() {
 
   const commonStyles =
     "flex justify-center  self-center rounded-lg  p-3 text-center text-2xl";
-  const normalLink = `hover:bg-gray-200 ${commonStyles}`;
-  const activeLink = `bg-gray-300 ${commonStyles}`;
+  const normalLink = `hover:bg-gray-200 hover:dark:bg-neutral-700 ${commonStyles}`;
+  const activeLink = `bg-gray-300 dark:bg-neutral-600 ${commonStyles}`;
 
   return (
     <nav className=" flex  w-full flex-row gap-6 rounded-lg text-center lg:h-full lg:flex-col lg:items-center lg:justify-center">
@@ -23,7 +23,7 @@ export default function Nav() {
         <FiMessageSquare />
       </NavLink>
       <NavLink
-        to={"/"}
+        to="/explore"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
       >
         <FiSearch />

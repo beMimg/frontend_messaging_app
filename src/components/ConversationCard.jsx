@@ -33,8 +33,8 @@ export default function ConversationCard({ conversation }) {
       )}
       <div className="flex w-full flex-row items-center justify-between ">
         <div className="flex flex-col justify-center">
-          <p>{conversation.participant.username}</p>
-          <p className="text-s text-gray-500">{lastMessageSmaller}...</p>
+          <p className="text-lg">{conversation.participant.username}</p>
+          <p className="text-sm text-gray-500">{lastMessageSmaller}...</p>
         </div>
         <p className=" p-2 text-xs">{formattedDate}</p>
       </div>
