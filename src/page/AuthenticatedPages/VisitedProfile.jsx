@@ -5,6 +5,7 @@ import { API_DOMAIN } from "../../utils/API_DOMAIN";
 import DefaultImage from "../../components/DefaultImage";
 import { useAuth } from "../../context/authProvider";
 import FollowUnfollowButton from "../../components/FollowUnfollowBtn";
+import formatDate from "../../utils/formatDate";
 
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
@@ -52,38 +53,6 @@ export default function VisitedProfile() {
   // {user} might not be populated yet. Causing the if statement inside the useEffect, to setIsFollowed
   //  to false, because the user does not exist. Therefore, the if statement doesn't run.
 
-  // async function unfollowUser() {
-  //   try {
-  //     const response = await axios.delete(
-  //       `${API_DOMAIN}/users/follow/${visitedUser._id}`,
-  //     );
-  // After delete, if the the user is not following the visited user, setIsFollowed to false.
-  // It's important to create the if statement and check if the user is really following the visited user
-  // in the database. Even tho we await the response (meaning it completed the delete request).
-  //     if (user && !user.following.includes(visitedUser._id)) {
-  //       setIsFollowed(false);
-  //     }
-
-  //     return;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // async function followUser() {
-  //   try {
-  //     const response = await axios.post(
-  //       `${API_DOMAIN}/users/follow/${visitedUser._id}`,
-  //     );
-  //     if (user && !user.following.includes(visitedUser._id)) {
-  //       setIsFollowed(true);
-  //     }
-  //     return;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
   if (errors) {
     return <p>{errors}</p>;
   }
@@ -110,13 +79,24 @@ export default function VisitedProfile() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-6">
           <h1 className="text-lg font-semibold">
             {visitedUser.first_name} @{visitedUser.username}
           </h1>
-          <p className="opacity-60">
-            {visitedUser.bio ? visitedUser.bio : "This user has no bio..."}
-          </p>
+          <div className="flex flex-col items-center ">
+            <p className="font-semibold">About me:</p>
+            <p className="opacity-70">
+              {visitedUser.bio ? visitedUser.bio : "This user has no bio..."}
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center ">
+            <p className="font-semibold">Member since:</p>
+            <p className="text-s opacity-70">
+              {formatDate(visitedUser.utc_creation)}
+            </p>
+          </div>
+
           <FollowUnfollowButton
             isFollowed={isFollowed}
             setIsFollowed={setIsFollowed}
