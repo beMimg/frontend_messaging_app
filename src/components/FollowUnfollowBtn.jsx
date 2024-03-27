@@ -45,7 +45,11 @@ export default function FollowUnfollowButton({
   }
 
   return (
-    <button onClick={handleFollow} disabled={isLoading}>
+    <button
+      onClick={handleFollow}
+      disabled={isLoading}
+      className={`rounded-md px-12 py-3 font-semibold ${isFollowed ? "bg-red-500 " : "bg-green-600"}`}
+    >
       {errors
         ? errors
         : isLoading
