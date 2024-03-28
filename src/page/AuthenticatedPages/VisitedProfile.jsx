@@ -10,8 +10,7 @@ import SendOrStartConversationButton from "../../components/SendOrStartConvoButt
 
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
-  const [isFollowed, setIsFollowed] = useState();
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState();
 
   const { id } = useParams();
@@ -22,23 +21,16 @@ export default function VisitedProfile() {
     const getUser = async () => {
       try {
         setIsLoading(true);
+        // Get visited user data:
         const response = await axios.get(`${API_DOMAIN}/users/${id}`);
         setVisitedUser(response.data);
-        // If the user logged is following the visitedUser._id
-        // set followed to true
-        if (user && user.following.includes(response.data.user._id)) {
-          setIsFollowed(true);
-          setIsLoading(false);
-          return;
-        }
-        setIsFollowed(false);
-        setIsLoading(false);
         return;
       } catch (err) {
         return setErrors("We apologize, could not fetch this user...");
+      } finally {
+        setIsLoading(false);
       }
     };
-
     // Conditionally calling the getUser function ensures that it's executed only when a valid user exists.
     // Without this check, the useEffect hook would run on component mount, potentially triggering an error
     // if the user is not yet populated (i.e., null or undefined). By verifying the existence of the user,
@@ -99,12 +91,7 @@ export default function VisitedProfile() {
               {formatDate(visitedUser.user.utc_creation)}
             </p>
           </div>
-
-          <FollowUnfollowButton
-            isFollowed={isFollowed}
-            setIsFollowed={setIsFollowed}
-            visitedUser={visitedUser.user}
-          />
+          <FollowUnfollowButton visitedUser={visitedUser.user} />
           <SendOrStartConversationButton visitedUser={visitedUser} />
         </div>
       </div>
