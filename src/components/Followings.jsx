@@ -37,16 +37,20 @@ export default function Followings() {
           <h1 className="text-md items-center font-semibold">Following</h1>
           <p className="text-center">{followings.length}</p>
         </div>
-        <div className=" flex h-[80px] flex-row gap-2">
+        <div className=" flex h-[100px] flex-row gap-2 overflow-x-auto scroll-smooth">
           {followings.map((follow) => (
-            <Link to={`/users/${follow._id}`} key={follow._id}>
+            <Link
+              to={`/users/${follow._id}`}
+              key={follow._id}
+              className="flex-shrink-0"
+            >
               {follow.profile_pic_src ? (
                 <img
                   src={follow.profile_pic_src}
                   className="h-[80px] w-[80px] rounded-full border-2 border-gray-200 object-cover object-center"
                 />
               ) : (
-                <DefaultImage size="full" />
+                <DefaultImage size="[80px]" />
               )}
             </Link>
           ))}

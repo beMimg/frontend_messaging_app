@@ -1,7 +1,6 @@
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import { Link } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
-import { useAuth } from "../context/authProvider";
 
 export default function ConversationHeader({ conversationDetails }) {
   return (
