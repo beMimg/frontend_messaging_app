@@ -15,7 +15,7 @@ export default function Nav() {
   const activeLink = `bg-gray-300 dark:bg-neutral-600 ${commonStyles}`;
 
   return (
-    <nav className=" flex  w-full flex-row gap-6 rounded-lg text-center lg:h-full lg:flex-col lg:items-center lg:justify-center">
+    <nav className=" flex  w-full flex-row items-center justify-center gap-6 rounded-lg text-center lg:h-full lg:flex-col">
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}

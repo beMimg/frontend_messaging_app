@@ -61,12 +61,12 @@ export default function Conversation({ conversation_id }) {
   }, [messages]);
 
   return (
-    <div className="flex h-[88%] flex-col lg:h-full">
-      <header className="h-[84px]">
+    <div className="flex h-full flex-col lg:h-full">
+      <header>
         <ConversationHeader conversationDetails={conversationDetails} />
       </header>
       <div
-        className="background-message flex-1 overflow-auto p-4"
+        className="background-message flex-1 overflow-auto p-2"
         ref={messageContainerRef}
       >
         <Messages
