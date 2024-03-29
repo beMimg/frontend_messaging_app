@@ -30,7 +30,7 @@ export default function MessagesPage() {
   if (isLoading) {
     return <p>Loading</p>;
   }
-
+  console.log(conversations);
   const { user } = useAuth();
 
   return (
