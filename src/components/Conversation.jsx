@@ -4,15 +4,15 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import Messages from "./Messages";
+import { useNewMessageRender } from "../context/NewMessageRenderProvider";
 
 export default function Conversation({ conversation_id }) {
   const [conversationDetails, setConversationDetails] = useState();
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
-  const [forceRerender, setForceRerender] = useState(0);
   const [messages, setMessages] = useState();
   const messageContainerRef = useRef(null);
-
+  const { newMessageRender } = useNewMessageRender();
   // re-fetch everytime the conversation_id changes.
   useEffect(() => {
     const getConversation = async () => {
@@ -48,7 +48,7 @@ export default function Conversation({ conversation_id }) {
       }
     };
     getMessages();
-  }, [conversation_id, forceRerender]);
+  }, [conversation_id, newMessageRender]);
 
   // Scroll to the bottom of the page.
   // messages as dependicies so everytime there's a new message
@@ -76,10 +76,7 @@ export default function Conversation({ conversation_id }) {
         />
       </div>
       <div>
-        <ConversationForm
-          conversation_id={conversation_id}
-          setForceRerender={setForceRerender}
-        />
+        <ConversationForm conversation_id={conversation_id} />
       </div>
     </div>
   );

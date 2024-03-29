@@ -3,12 +3,11 @@ import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { useState } from "react";
+import { useNewMessageRender } from "../context/NewMessageRenderProvider";
 
-export default function ConversationForm({
-  conversation_id,
-  setForceRerender,
-}) {
+export default function ConversationForm({ conversation_id }) {
   const [content, setContent] = useState("");
+  const { newMessageRender, setNewMessageRender } = useNewMessageRender();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,8 +18,8 @@ export default function ConversationForm({
         {},
       );
       setContent("");
-      setForceRerender((prevRender) => {
-        return prevRender + 1;
+      setNewMessageRender((prevMessage) => {
+        return prevMessage + 1;
       });
       return console.log(response);
     } catch (err) {
