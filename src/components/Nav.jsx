@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import { TbLogout2 } from "react-icons/tb";
 import { useState } from "react";
 import LogoutModal from "./LogoutModal";
+import { IoIosPeople } from "react-icons/io";
+import { GrGroup } from "react-icons/gr";
 
 export default function Nav() {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
@@ -23,10 +25,10 @@ export default function Nav() {
         <FiMessageSquare />
       </NavLink>
       <NavLink
-        to="/explore"
+        to="/explore/page=1"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
       >
-        <FiSearch />
+        <GrGroup />
       </NavLink>
       <NavLink
         to="/profile"
