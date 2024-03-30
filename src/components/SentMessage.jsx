@@ -33,7 +33,7 @@ export default function SentMessage({ message }) {
       <div className="flex flex-row gap-1 self-end">
         <p className="text-xs opacity-35">{formattedDate}</p>
         {message.isRead ? (
-          <IoCheckmarkDone className="text-sky-500" />
+          <IoCheckmarkDone className="text-xl text-sky-500" />
         ) : (
           <IoCheckmark className="text-gray-400" />
         )}

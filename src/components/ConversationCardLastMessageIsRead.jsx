@@ -14,7 +14,9 @@ export default function ConversationCardlastMessageisRead({
       return (
         <>
           <IoCheckmark className="text-md text-gray-500" />
-          <p className="text-sm text-gray-500">{lastMessageSmaller}...</p>
+          <p className="max-w-[150px] break-words text-sm text-gray-500 lg:max-w-none">
+            {lastMessageSmaller}...
+          </p>
         </>
       );
     }

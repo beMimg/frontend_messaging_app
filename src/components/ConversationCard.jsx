@@ -34,13 +34,16 @@ export default function ConversationCard({ conversation }) {
         ) : (
           <DefaultImage size="[60px]" />
         )}
-        <div className="flex w-full flex-row items-center justify-between ">
-          <div className="flex flex-col justify-center">
+        <div className="flex w-full flex-col  ">
+          <div className="flex flex-row justify-between">
             <p
               className={`text-lg ${conversation.lastMessage.sender._id !== user._id && conversation.lastMessage.isRead === false && "font-bold"}`}
             >
               {conversation.participant.username}
             </p>
+            <p className=" p-2 text-xs text-gray-500">{formattedDate}</p>
+          </div>
+          <div className="flex flex-col justify-center">
             <div className="flex flex-row items-center gap-1">
               <ConversationCardLastMessageisRead
                 conversation={conversation}
@@ -48,7 +51,6 @@ export default function ConversationCard({ conversation }) {
               />
             </div>
           </div>
-          <p className=" p-2 text-xs">{formattedDate}</p>
         </div>
       </NavLink>
     )
