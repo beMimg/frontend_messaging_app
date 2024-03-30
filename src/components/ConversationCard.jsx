@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { DateTime } from "luxon";
 import DefaultImage from "./DefaultImage";
-
 import { useAuth } from "../context/authProvider";
 import ConversationCardLastMessageisRead from "./ConversationCardLastMessageIsRead";
 

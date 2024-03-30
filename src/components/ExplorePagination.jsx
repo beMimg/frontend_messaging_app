@@ -62,8 +62,7 @@ export default function ExplorePagination() {
       </div>
     );
   }
-  console.log(prevPage);
-  console.log(allUsers);
+
   return (
     <div className=" flex h-full w-full flex-col">
       {allUsers && (
@@ -81,9 +80,13 @@ export default function ExplorePagination() {
               </Link>
             )}
           </div>
-          <div className="flex h-full flex-col gap-4 p-2 lg:w-[50%] lg:self-center">
+          <div className="flex h-full flex-col gap-4 p-4 lg:grid lg:w-[50%] lg:grid-cols-2 lg:self-center">
             {allUsers.map((user) => (
-              <Link to={`/users/${user._id}`} key={user._id} className=" flex ">
+              <Link
+                to={`/users/${user._id}`}
+                key={user._id}
+                className="flex max-h-[150px] flex-row items-center gap-3 bg-gray-100 p-4 dark:bg-neutral-800 "
+              >
                 {user.profile_pic_src ? (
                   <img
                     src={user.profile_pic_src}
@@ -96,16 +99,7 @@ export default function ExplorePagination() {
                     className=" h-[70px] w-[70px] rounded-full   object-cover object-center"
                   ></img>
                 )}
-
-                {/* <div className="absolute bottom-10 w-full  text-center">
-                  <Link
-                    to={`/users/${user._id}`}
-                    className=" rounded-md bg-rose-800 px-8 py-1 text-center font-semibold text-white xl:px-10 xl:py-2"
-                  >
-                    See Profile
-                  </Link>
-                </div> */}
-                <div className="flex h-full flex-col items-center justify-center">
+                <div className="flex h-full flex-col justify-center">
                   <p className="font-semibold">{user.first_name}</p>
                   <p className=" ">@{user.username}</p>
                 </div>
