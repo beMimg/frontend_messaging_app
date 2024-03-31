@@ -10,13 +10,16 @@ import { FaRegBellSlash } from "react-icons/fa6";
 import { BsExclamationCircle } from "react-icons/bs";
 import ConversationDetailsOptions from "./ConversationDetailsOptions";
 import { Link } from "react-router-dom";
+import LoadingDots from "./LoadingDots";
 
 export default function ConversationDetails({ conversation_id }) {
   const [conversationDetails, setConversationDetails] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getConversation = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(
           `${API_DOMAIN}/conversation/${conversation_id}`,
         );
@@ -24,11 +27,21 @@ export default function ConversationDetails({ conversation_id }) {
         setConversationDetails(response.data);
         return;
       } catch (err) {
-        console.log(err);
+        return;
+      } finally {
+        setIsLoading(false);
       }
     };
     getConversation();
   }, [conversation_id]);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <LoadingDots />
+      </div>
+    );
+  }
 
   return (
     conversationDetails && (
