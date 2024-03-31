@@ -23,7 +23,7 @@ export default function Profile() {
         <div className="relative mb-14 lg:mb-32">
           <div className=" h-[180px] w-full bg-gradient-to-b from-teal-500 to-teal-700 lg:h-[300px] "></div>
           <div className=" absolute -bottom-[50px] flex w-full items-center justify-center lg:-bottom-[100px]">
-            <div className="hover-display relative h-[100px] w-[100px] lg:h-[200px] lg:w-[200px]">
+            <div className="hover-display relative h-[100px] w-[100px] transition-all lg:h-[200px] lg:w-[200px]">
               {user.profile_pic_src ? (
                 <img
                   src={user.profile_pic_src}
@@ -36,7 +36,7 @@ export default function Profile() {
 
               <div
                 onClick={() => setIsProfilePicOpen(true)}
-                className="hover-display-match absolute left-0 top-0 z-40 hidden h-full  w-full cursor-pointer items-center justify-center rounded-full bg-black  text-4xl text-white opacity-45"
+                className="hover-display-match absolute left-0 top-0 z-40 hidden h-full w-full  cursor-pointer items-center justify-center rounded-full bg-black text-4xl  text-white opacity-45 transition-all"
               >
                 <GoPencil />
               </div>
@@ -59,7 +59,12 @@ export default function Profile() {
           )}
         </div>
         <div className="flex w-min flex-col gap-10 p-4  pl-10 text-lg">
-          <button onClick={() => setIsFollowingsOpen(true)}>Followings</button>
+          <button
+            className="transition-all hover:translate-x-1 hover:scale-105"
+            onClick={() => setIsFollowingsOpen(true)}
+          >
+            Followings
+          </button>
           {isFollowingsOpen && (
             <FollowingsShowcase
               user={user}
@@ -68,7 +73,7 @@ export default function Profile() {
           )}
           <button
             onClick={() => setLogoutModalOpen(true)}
-            className="text-start"
+            className="text-start transition-all hover:translate-x-1 hover:scale-105"
           >
             Logout
           </button>

@@ -98,7 +98,7 @@ export default function ExplorePagination() {
               <Link
                 to={`/users/${user._id}`}
                 key={user._id}
-                className="flex max-h-[150px] flex-row items-center gap-3 bg-gray-100 p-4 dark:bg-neutral-800 "
+                className="flex max-h-[150px] flex-row items-center gap-3 bg-gray-100 p-4 transition-all hover:bg-gray-200 dark:bg-neutral-800 hover:dark:bg-neutral-700"
               >
                 {user.profile_pic_src ? (
                   <img

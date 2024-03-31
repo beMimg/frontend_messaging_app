@@ -42,7 +42,7 @@ export default function Followings() {
           <h1 className="text-md items-center font-semibold">Following</h1>
           <p className="text-center">{followings.length}</p>
         </div>
-        <div className=" flex h-[100px] flex-row gap-2 overflow-x-auto scroll-smooth">
+        <div className=" flex h-[110px] flex-row gap-2 overflow-x-auto scroll-smooth">
           {followings.map((follow) => (
             <Link
               to={`/users/${follow._id}`}

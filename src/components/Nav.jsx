@@ -12,7 +12,7 @@ export default function Nav() {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   const commonStyles =
-    "flex justify-center  self-center rounded-lg  p-3 text-center text-2xl";
+    "flex justify-center  self-center rounded-lg  p-3 text-center text-2xl hover:scale-110 transition-all";
   const normalLink = `hover:bg-gray-200 hover:dark:bg-neutral-700 ${commonStyles}`;
   const activeLink = `bg-gray-300 dark:bg-neutral-600 ${commonStyles}`;
 
@@ -39,7 +39,7 @@ export default function Nav() {
         </NavLink>
         <button
           onClick={() => setLogoutModalOpen(true)}
-          className="absolute bottom-10 left-[30px] hidden text-2xl lg:block"
+          className="absolute bottom-10 left-[30px] hidden text-2xl transition-all hover:scale-110 lg:block"
         >
           <TbLogout2 />
         </button>
