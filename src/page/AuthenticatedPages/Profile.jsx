@@ -1,17 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogoutModal from "../../components/LogoutModal";
 import ToggleThemeButton from "../../components/toggleThemeButton";
 import { GoPencil } from "react-icons/go";
 import DefaultImage from "../../components/DefaultImage";
 import EditProfilePic from "../../components/EditProfilePic";
 import EditProfileBio from "../../components/EditProfileBio";
+import FollowingsShowcase from "../../components/FollowingsShowcase";
 
 export default function Profile() {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
   const [isEditProfilePicOpen, setIsProfilePicOpen] = useState(false);
   const [isEditBioOpen, setIsEditBioOpen] = useState();
+  const [isFollowingsOpen, setIsFollowingsOpen] = useState(false);
 
   const { user } = useAuth();
 
@@ -34,7 +36,7 @@ export default function Profile() {
 
               <div
                 onClick={() => setIsProfilePicOpen(true)}
-                className="hover-display-match absolute left-0 top-0 z-40 hidden   h-full w-full cursor-pointer items-center justify-center rounded-full  bg-black text-4xl opacity-45"
+                className="hover-display-match absolute left-0 top-0 z-40 hidden h-full  w-full cursor-pointer items-center justify-center rounded-full bg-black  text-4xl text-white opacity-45"
               >
                 <GoPencil />
               </div>
@@ -56,8 +58,14 @@ export default function Profile() {
             <EditProfileBio user={user} setIsEditBioOpen={setIsEditBioOpen} />
           )}
         </div>
-        <div className="flex w-min flex-col gap-10 p-4 text-lg">
-          <Link>Following</Link>
+        <div className="flex w-min flex-col gap-10 p-4  pl-10 text-lg">
+          <button onClick={() => setIsFollowingsOpen(true)}>Followings</button>
+          {isFollowingsOpen && (
+            <FollowingsShowcase
+              user={user}
+              setIsFollowingsOpen={setIsFollowingsOpen}
+            />
+          )}
           <button
             onClick={() => setLogoutModalOpen(true)}
             className="text-start"
