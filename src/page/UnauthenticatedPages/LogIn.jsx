@@ -114,16 +114,16 @@ export default function LogIn() {
               </p>
             )}
           </div>
-        </form>
-        <div className="flex flex-col gap-1.5">
           <button
             onClick={handleSubmit}
             type="submit"
-            className="button-default primary-bg-color text-white"
+            className="button-default primary-bg-color mt-10 text-white"
             disabled={isLoading}
           >
             {isLoading ? "Please wait..." : "Login"}
           </button>
+        </form>
+        <div className="flex flex-col gap-1.5">
           <p className="text-center">
             Don't have an account?{" "}
             <Link
