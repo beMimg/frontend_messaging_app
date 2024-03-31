@@ -25,7 +25,7 @@ export default function ConversationHeader({ conversationDetails }) {
               <p>@{conversationDetails.participant[0].username}</p>
             </div>
           </Link>
-          <button className="item-center ml-auto self-center pr-2">
+          <button className="item-center ml-auto cursor-not-allowed self-center pr-2">
             <SlOptionsVertical />
           </button>
         </>

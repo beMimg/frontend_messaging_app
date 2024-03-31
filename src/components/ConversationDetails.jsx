@@ -11,6 +11,7 @@ import { BsExclamationCircle } from "react-icons/bs";
 import ConversationDetailsOptions from "./ConversationDetailsOptions";
 import { Link } from "react-router-dom";
 import LoadingDots from "./LoadingDots";
+import DefaultImage from "./DefaultImage";
 
 export default function ConversationDetails({ conversation_id }) {
   const [conversationDetails, setConversationDetails] = useState();
@@ -57,10 +58,7 @@ export default function ConversationDetails({ conversation_id }) {
             </Link>
           ) : (
             <Link to={`/users/${conversationDetails.participant[0]._id}`}>
-              <img
-                src={glassesKissSvg}
-                className="h-[90px] w-[90px] rounded-full border-2 border-gray-300  object-cover object-center"
-              />
+              <DefaultImage size="[90px]" />
             </Link>
           )}
           <p>{conversationDetails.participant[0].first_name}</p>
