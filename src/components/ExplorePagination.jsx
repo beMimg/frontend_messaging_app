@@ -15,6 +15,12 @@ export default function ExplorePagination() {
   const [errors, setErrors] = useState(null);
   const navigation = useNavigate();
 
+  /*  
+    :pagination is equal to 'page=2', so extract the number after '='
+    nextPage = If allUsers length is equal to 10, we add a button to see the other page
+    prevPage = If the actual page is bigger than one than the previous page will be the 
+    current page - 1, if its 1, its the first page so prevPage is null
+  */
   const extractPageNumber = parseInt(pagination.split("=")[1]);
   const nextPage = allUsers && allUsers.length === 10 && extractPageNumber + 1;
   const prevPage = extractPageNumber !== 1 ? extractPageNumber - 1 : null;

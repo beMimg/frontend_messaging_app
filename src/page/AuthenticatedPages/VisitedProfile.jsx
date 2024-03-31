@@ -7,6 +7,7 @@ import { useAuth } from "../../context/authProvider";
 import FollowUnfollowButton from "../../components/FollowUnfollowBtn";
 import formatDate from "../../utils/formatDate";
 import SendOrStartConversationButton from "../../components/SendOrStartConvoButton";
+import LoadingDots from "../../components/LoadingDots";
 
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
@@ -56,8 +57,13 @@ export default function VisitedProfile() {
   if (errors) {
     return <p>{errors}</p>;
   }
+
   if (isLoading) {
-    return <p>LOADING......................</p>;
+    return (
+      <div className="w-full items-center justify-center pt-40">
+        <LoadingDots />
+      </div>
+    );
   }
 
   return (
