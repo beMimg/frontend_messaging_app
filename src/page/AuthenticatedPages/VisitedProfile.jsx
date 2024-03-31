@@ -8,6 +8,7 @@ import FollowUnfollowButton from "../../components/FollowUnfollowBtn";
 import formatDate from "../../utils/formatDate";
 import SendOrStartConversationButton from "../../components/SendOrStartConvoButton";
 import LoadingDots from "../../components/LoadingDots";
+import AccessDenied from "../ErrorPages/AccessDenied";
 
 export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
@@ -55,7 +56,7 @@ export default function VisitedProfile() {
   //  to false, because the user does not exist. Therefore, the if statement doesn't run.
 
   if (errors) {
-    return <p>{errors}</p>;
+    return <AccessDenied />;
   }
 
   if (isLoading) {

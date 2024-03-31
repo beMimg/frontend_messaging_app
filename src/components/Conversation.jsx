@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import Messages from "./Messages";
 import { useNewMessageRender } from "../context/NewMessageRenderProvider";
+import AccessDenied from "../page/ErrorPages/AccessDenied";
 
 export default function Conversation({ conversation_id }) {
   const [conversationDetails, setConversationDetails] = useState();
@@ -14,16 +15,19 @@ export default function Conversation({ conversation_id }) {
   const messageContainerRef = useRef(null);
   const { newMessageRender } = useNewMessageRender();
   // re-fetch everytime the conversation_id changes.
+
   useEffect(() => {
     const getConversation = async () => {
       try {
+        setErrors();
         setIsLoading(true);
         const response = await axios.get(
           `${API_DOMAIN}/conversation/${conversation_id}`,
         );
         return setConversationDetails(response.data);
       } catch (err) {
-        return setErrors(err.response.data.errors);
+        console.log(err);
+        return setErrors("Conversation not found");
       } finally {
         return setIsLoading(false);
       }
@@ -44,7 +48,7 @@ export default function Conversation({ conversation_id }) {
         setMessages(response.data);
         return;
       } catch (err) {
-        return;
+        return setErrors("Conversation not found");
       }
     };
     getMessages();
@@ -60,6 +64,10 @@ export default function Conversation({ conversation_id }) {
     }
   }, [messages]);
 
+  if (errors) {
+    return <AccessDenied />;
+  }
+  console.log(errors);
   return (
     <div className="flex h-full flex-col lg:h-full">
       <header>
