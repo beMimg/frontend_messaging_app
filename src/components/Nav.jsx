@@ -17,34 +17,36 @@ export default function Nav() {
   const activeLink = `bg-gray-300 dark:bg-neutral-600 ${commonStyles}`;
 
   return (
-    <nav className=" flex w-full flex-row items-center justify-center gap-6 rounded-lg text-center lg:relative lg:h-full lg:flex-col">
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? activeLink : normalLink)}
-      >
-        <FiMessageSquare />
-      </NavLink>
-      <NavLink
-        to="/explore/page=1"
-        className={({ isActive }) => (isActive ? activeLink : normalLink)}
-      >
-        <GrGroup />
-      </NavLink>
-      <NavLink
-        to="/profile"
-        className={({ isActive }) => (isActive ? activeLink : normalLink)}
-      >
-        <GoPerson />
-      </NavLink>
-      <button
-        onClick={() => setLogoutModalOpen(true)}
-        className="absolute bottom-10 left-[30px] hidden text-2xl lg:block"
-      >
-        <TbLogout2 />
-      </button>
+    <>
+      <nav className="  flex w-full flex-row items-center justify-center gap-6 rounded-lg text-center lg:relative lg:h-full lg:flex-col">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+          <FiMessageSquare />
+        </NavLink>
+        <NavLink
+          to="/explore/page=1"
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+          <GrGroup />
+        </NavLink>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+          <GoPerson />
+        </NavLink>
+        <button
+          onClick={() => setLogoutModalOpen(true)}
+          className="absolute bottom-10 left-[30px] hidden text-2xl lg:block"
+        >
+          <TbLogout2 />
+        </button>
+      </nav>
       {logoutModalOpen && (
         <LogoutModal setLogoutModalOpen={setLogoutModalOpen} />
       )}
-    </nav>
+    </>
   );
 }
