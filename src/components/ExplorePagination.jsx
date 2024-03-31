@@ -4,9 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
-import DefaultImage from "./DefaultImage";
-import catImg from "../assets/kitty-cat.jpeg";
 import LoadingDots from "./LoadingDots";
+import anonymousPic from "../assets/anonymous_pic.png";
 
 export default function ExplorePagination() {
   const { pagination } = useParams();
@@ -109,7 +108,7 @@ export default function ExplorePagination() {
                   />
                 ) : (
                   <img
-                    src={catImg}
+                    src={anonymousPic}
                     className=" h-[70px] w-[70px] rounded-full   object-cover object-center"
                   ></img>
                 )}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import catImg from "../assets/kitty-cat.jpeg";
+import anonymousPic from "../assets/anonymous_pic.png";
 import { IoMdClose } from "react-icons/io";
 
 export default function FollowingsShowcase({ user, setIsFollowingsOpen }) {
@@ -28,7 +28,7 @@ export default function FollowingsShowcase({ user, setIsFollowingsOpen }) {
                   />
                 ) : (
                   <img
-                    src={catImg}
+                    src={anonymousPic}
                     className=" h-[70px] w-[70px] rounded-full   object-cover object-center"
                   ></img>
                 )}

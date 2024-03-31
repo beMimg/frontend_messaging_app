@@ -1,5 +1,5 @@
-import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import formatDate from "../utils/formatDate";
+import DefaultImage from "./DefaultImage";
 
 export default function RecievedMessage({ conversationDetails, message }) {
   const formattedDate = formatDate(message.timestamp);
@@ -14,10 +14,7 @@ export default function RecievedMessage({ conversationDetails, message }) {
           className="h-[45px] w-[45px] rounded-full border border-gray-300  object-cover object-center"
         />
       ) : (
-        <img
-          src={glassesKissSvg}
-          className="h-[45px] w-[45px] rounded-full border border-gray-300  object-cover object-center"
-        />
+        <DefaultImage size="[45px]" />
       )}
       <div className="flex max-w-[80%] flex-col gap-1 " key={message._id}>
         <p className="break-words rounded-r-3xl rounded-bl-3xl bg-black px-4 py-1 text-white dark:bg-white dark:text-black">

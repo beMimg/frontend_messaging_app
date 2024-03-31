@@ -1,6 +1,7 @@
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import { Link } from "react-router-dom";
 import { SlOptionsVertical } from "react-icons/sl";
+import DefaultImage from "./DefaultImage";
 
 export default function ConversationHeader({ conversationDetails }) {
   return (
@@ -17,10 +18,7 @@ export default function ConversationHeader({ conversationDetails }) {
                 className="h-[60px] w-[60px] rounded-full border border-gray-300  object-cover object-center"
               />
             ) : (
-              <img
-                src={glassesKissSvg}
-                className="h-[60px] w-[60px] rounded-full border border-gray-300  object-cover object-center"
-              />
+              <DefaultImage size="[60px]" />
             )}
             <div className="flex flex-col justify-evenly">
               <h1>{conversationDetails.participant[0].first_name}</h1>
