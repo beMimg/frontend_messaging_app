@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { useNewMessageRender } from "../context/NewMessageRenderProvider";
 import ConversationCard from "../components/ConversationCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function MessagePageConversations() {
   const [conversations, setConversations] = useState();
@@ -33,7 +34,11 @@ export default function MessagePageConversations() {
   }, [newMessageRender, clickCardReRender]);
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return (
+      <div className="flex w-full items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   return (

@@ -4,6 +4,7 @@ import { API_DOMAIN } from "../utils/API_DOMAIN";
 import { Link } from "react-router-dom";
 import glassesKissSvg from "../assets/reshot-icon-glasses-kiss-YUSND43AHW.svg";
 import DefaultImage from "./DefaultImage";
+import LoadingDots from "./LoadingDots";
 
 export default function Followings() {
   const [followings, setFollowings] = useState();
@@ -27,7 +28,11 @@ export default function Followings() {
 
   // To be improved
   if (isLoading) {
-    return <p>...</p>;
+    return (
+      <div className="flex h-[100px] items-center justify-center lg:items-center lg:justify-start">
+        <LoadingDots />
+      </div>
+    );
   }
 
   return (
