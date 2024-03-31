@@ -4,7 +4,10 @@ import DefaultImage from "./DefaultImage";
 import { useAuth } from "../context/authProvider";
 import ConversationCardLastMessageisRead from "./ConversationCardLastMessageIsRead";
 
-export default function ConversationCard({ conversation }) {
+export default function ConversationCard({
+  conversation,
+  setClickCardReRender,
+}) {
   const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   // // use users time zone to format the date of comment
@@ -19,9 +22,15 @@ export default function ConversationCard({ conversation }) {
   const activeLinkStyle =
     "relative flex flex-row gap-3 px-4 py-2 dark:bg-neutral-800 h-[85px] bg-gray-100  border-b border-gray-300 dark:border-neutral-700";
 
+  function handleClick() {
+    setClickCardReRender((prevRender) => prevRender + 1);
+    return;
+  }
+
   return (
     user && (
       <NavLink
+        onClick={handleClick}
         to={`/conversation/${conversation.conversation_id}`}
         className={({ isActive }) => (isActive ? activeLinkStyle : linkStyle)}
       >

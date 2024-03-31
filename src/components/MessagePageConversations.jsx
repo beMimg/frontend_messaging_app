@@ -8,6 +8,11 @@ export default function MessagePageConversations() {
   const [conversations, setConversations] = useState();
   const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState();
+  const [clickCardReRender, setClickCardReRender] = useState(0);
+  /*
+    clickCardReRender, wil refetch the conversations when a card is clicked.
+    In order get if the lastMessage was read or not.
+  */
 
   const { newMessageRender } = useNewMessageRender();
 
@@ -25,7 +30,7 @@ export default function MessagePageConversations() {
       }
     };
     userConversations();
-  }, [newMessageRender]);
+  }, [newMessageRender, clickCardReRender]);
 
   if (isLoading) {
     return <p>Loading</p>;
@@ -38,6 +43,7 @@ export default function MessagePageConversations() {
           <ConversationCard
             key={conversation.participant._id}
             conversation={conversation}
+            setClickCardReRender={setClickCardReRender}
           />
         ))}
     </div>
