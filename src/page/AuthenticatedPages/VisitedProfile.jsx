@@ -12,7 +12,7 @@ export default function VisitedProfile() {
   const [visitedUser, setVisitedUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState();
-
+  const navigation = useNavigate();
   const { id } = useParams();
 
   const { user } = useAuth();
@@ -20,6 +20,12 @@ export default function VisitedProfile() {
   useEffect(() => {
     const getUser = async () => {
       try {
+        // Don't allow the user tries to see is profile from a VisitedProfile prespective
+        // redirect him to his profile
+        if (id === user._id) {
+          navigation("/profile", { replace: true });
+          return;
+        }
         setIsLoading(true);
         // Get visited user data:
         const response = await axios.get(`${API_DOMAIN}/users/${id}`);
@@ -31,6 +37,7 @@ export default function VisitedProfile() {
         setIsLoading(false);
       }
     };
+
     // Conditionally calling the getUser function ensures that it's executed only when a valid user exists.
     // Without this check, the useEffect hook would run on component mount, potentially triggering an error
     // if the user is not yet populated (i.e., null or undefined). By verifying the existence of the user,
