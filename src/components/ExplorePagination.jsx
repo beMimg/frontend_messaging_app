@@ -6,6 +6,7 @@ import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 import DefaultImage from "./DefaultImage";
 import catImg from "../assets/kitty-cat.jpeg";
+import LoadingDots from "./LoadingDots";
 
 export default function ExplorePagination() {
   const { pagination } = useParams();
@@ -31,7 +32,6 @@ export default function ExplorePagination() {
         setAllUsers(response.data.users);
         return;
       } catch (err) {
-        console.log(err.response.data.message);
         setErrors(err.response.data.message);
         return;
       } finally {
@@ -59,6 +59,14 @@ export default function ExplorePagination() {
             go back to the first page.
           </span>
         </p>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div>
+        <LoadingDots />
       </div>
     );
   }

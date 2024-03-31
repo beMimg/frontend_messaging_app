@@ -1,7 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { API_DOMAIN } from "../../utils/API_DOMAIN";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function ExplorePage() {
   return (
