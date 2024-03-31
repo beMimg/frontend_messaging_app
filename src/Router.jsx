@@ -6,7 +6,6 @@ import SignUp from "./page/UnauthenticatedPages/SignUp";
 import LogIn from "./page/UnauthenticatedPages/LogIn";
 
 // Public Routes:
-import AboutUs from "./page/PublicPages/AboutUs";
 
 //  Authenticated Routes:
 import AuthenticatedLayout from "./page/AuthenticatedPages/AuthenticatedLayout";
@@ -17,14 +16,14 @@ import Profile from "./page/AuthenticatedPages/Profile";
 import ConversationPage from "./page/AuthenticatedPages/ConversationPage";
 import ExplorePage from "./page/AuthenticatedPages/ExplorePage";
 import ExplorePagination from "./components/ExplorePagination";
+import AccessDenied from "./page/ErrorPages/AccessDenied";
 
 const Routes = () => {
   // Use Context of Authorization
   const { token } = useAuth();
 
-  const routesForPublic = [{ path: "/about-us", element: <AboutUs /> }];
-
   const routesForUnauthenticatedOnly = [
+    { errorElement: <AccessDenied /> },
     { path: "/", element: <UnauthenticatedHomepage /> },
     { path: "/sign-up", element: <SignUp /> },
     { path: "/login", element: <LogIn /> },
@@ -34,6 +33,7 @@ const Routes = () => {
     {
       path: "/",
       element: <AuthenticatedLayout />,
+      errorElement: <AccessDenied />,
       children: [
         { index: true, element: <MessagesPage /> },
         { path: "/users/:id", element: <VisitedProfile /> },
@@ -59,7 +59,6 @@ const Routes = () => {
 
   // If diferrent routes depedding on if the user has token or not.
   const router = createBrowserRouter([
-    ...routesForPublic,
     ...(!token ? routesForUnauthenticatedOnly : []),
     ...(token ? routesForAuthenticatedOnly : []),
   ]);

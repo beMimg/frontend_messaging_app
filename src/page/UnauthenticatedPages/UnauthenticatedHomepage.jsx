@@ -47,7 +47,8 @@ export default function UnauthenticatedHomepage() {
             Let's Get Started
           </h1>
           <p>
-            Connect with each other with catting. Enjoy safe and private texting
+            Connect with each other with chatting. Enjoy safe and private
+            texting
           </p>
         </div>
         <Link
