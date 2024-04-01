@@ -33,7 +33,7 @@ export default function EditProfilePic({ setIsProfilePicOpen }) {
       return;
     } catch (err) {
       return setErrors(
-        "Could not update your profile picture, please try again later.",
+        "You need to send a file that doesn't exceeds the size limit of 2 MB ",
       );
     }
   }
