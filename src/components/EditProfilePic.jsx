@@ -41,7 +41,7 @@ export default function EditProfilePic({ setIsProfilePicOpen }) {
     <div className="absolute left-0 top-0 z-20 flex h-full w-full items-center justify-center bg-black bg-opacity-90 ">
       <form
         onSubmit={handleSubmit}
-        className="relative flex flex-col gap-4 rounded-lg bg-white  p-6 dark:bg-neutral-900 dark:text-white"
+        className="relative flex w-[70%] flex-col gap-4 rounded-lg bg-white p-6  dark:bg-neutral-900 dark:text-white lg:max-w-[500px]"
       >
         <input
           type="file"
