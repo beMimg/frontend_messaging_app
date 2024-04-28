@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import smirkSvg from "../../assets/reshot-icon-smirk-ZGPUEXQHNB.svg";
 import socialLifeSvg from "../../assets/social-life.svg";
 import animatedText2 from "../../assets/animated-text2.gif";
+import SignInAsGuest from "../../components/SignInAsGuest";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
@@ -97,12 +98,6 @@ export default function LogIn() {
               className="input-default"
             />
             {/* build this in future */}
-            <Link
-              to="/"
-              className="primary-text-color mt-2 self-end font-medium"
-            >
-              Forgot password
-            </Link>
           </div>
           <div className="relative h-3">
             {errors && (
@@ -114,10 +109,13 @@ export default function LogIn() {
               </p>
             )}
           </div>
+          <div className="rounded-lg bg-rose-600 text-white">
+            <SignInAsGuest />
+          </div>
           <button
             onClick={handleSubmit}
             type="submit"
-            className="button-default primary-bg-color mt-10 text-white"
+            className="button-default primary-bg-color text-white  xl:text-xl"
             disabled={isLoading}
           >
             {isLoading ? "Please wait..." : "Login"}

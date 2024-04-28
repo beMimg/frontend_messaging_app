@@ -44,20 +44,18 @@ const SignInAsGuest = () => {
       <button
         onClick={handleGuest}
         disabled={isLoading}
-        className="button-default primary-text-color   w-full  bg-white xl:py-4 xl:text-xl "
+        className=" flex w-full  flex-row items-center justify-center gap-1  py-2 xl:text-xl "
       >
-        <span className="relative ">
-          {!isLoading ? (
-            <>
-              <LiaRandomSolid className="absolute -left-7 top-[1px]  text-xl xl:top-[2px]" />
-              Sign in as a guest
-            </>
-          ) : (
-            <>
-              <LoadingDots />
-            </>
-          )}
-        </span>
+        {!isLoading ? (
+          <>
+            <LiaRandomSolid />
+            Sign in as a <span className="font-semibold underline">Guest</span>
+          </>
+        ) : (
+          <>
+            <LoadingDots />
+          </>
+        )}
       </button>
       {isSuccess && (
         <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-60 ">

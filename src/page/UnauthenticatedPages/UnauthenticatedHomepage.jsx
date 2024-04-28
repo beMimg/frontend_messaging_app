@@ -9,7 +9,7 @@ import SignInAsGuest from "../../components/SignInAsGuest";
 
 export default function UnauthenticatedHomepage() {
   return (
-    <div className=" grid h-screen grid-rows-2 bg-gradient-to-b from-rose-500 to-rose-900 p-6 font-roboto text-white lg:grid-cols-2 lg:gap-6 ">
+    <div className=" grid h-screen grid-rows-2 bg-gradient-to-b from-rose-500 to-rose-900 px-6 py-0 font-roboto text-white lg:grid-cols-2 lg:gap-6 lg:p-6 ">
       <div className="relative lg:col-start-1 ">
         <img
           src={glassesKissSvg}
@@ -47,10 +47,7 @@ export default function UnauthenticatedHomepage() {
           <h1 className="text-5xl lg:text-6xl lg:font-bold 2xl:text-7xl ">
             Let's Get Started
           </h1>
-          <p>
-            Connect with each other with chatting. Enjoy safe and private
-            texting
-          </p>
+          <p>Connect with each other with chatting.</p>
         </div>
         <Link
           to="/sign-up"
@@ -58,7 +55,7 @@ export default function UnauthenticatedHomepage() {
         >
           Start Chatting
         </Link>
-        <p className="self-center">
+        <p className="self-center xl:text-xl">
           Already have an account?{" "}
           <Link to="/login" className="font-bold underline">
             Login
