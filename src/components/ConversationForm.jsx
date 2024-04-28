@@ -21,9 +21,9 @@ export default function ConversationForm({ conversation_id }) {
       setNewMessageRender((prevMessage) => {
         return prevMessage + 1;
       });
-      return console.log(response);
+      return;
     } catch (err) {
-      return console.log(err);
+      return;
     }
   }
 

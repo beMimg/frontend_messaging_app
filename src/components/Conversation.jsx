@@ -26,7 +26,6 @@ export default function Conversation({ conversation_id }) {
         );
         return setConversationDetails(response.data);
       } catch (err) {
-        console.log(err);
         return setErrors("Conversation not found");
       } finally {
         return setIsLoading(false);
@@ -67,7 +66,6 @@ export default function Conversation({ conversation_id }) {
   if (errors) {
     return <AccessDenied />;
   }
-  console.log(errors);
   return (
     <div className="flex h-full flex-col lg:h-full">
       <header>

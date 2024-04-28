@@ -5,6 +5,7 @@ import loveSvg from "../../assets/reshot-icon-love-U63YHWCBJX.svg";
 import moneySvg from "../../assets/reshot-icon-money-S6DHLMN347.svg";
 import tongeSvg from "../../assets/reshot-icon-tongue-Y92VG4RXPL.svg";
 import messagingPhoto from "../../assets/messaging-photo.jpg";
+import SignInAsGuest from "../../components/SignInAsGuest";
 
 export default function UnauthenticatedHomepage() {
   return (
@@ -57,12 +58,15 @@ export default function UnauthenticatedHomepage() {
         >
           Start Chatting
         </Link>
-        <p className="xl: self-center">
+        <p className="self-center">
           Already have an account?{" "}
           <Link to="/login" className="font-bold underline">
             Login
           </Link>
         </p>
+        <div className="w-full self-center">
+          <SignInAsGuest />
+        </div>
       </div>
     </div>
   );
