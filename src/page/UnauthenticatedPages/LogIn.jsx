@@ -71,34 +71,36 @@ export default function LogIn() {
           </div>
           <img src={smirkSvg} alt="smirk emoji" className="h-14 " />
         </div>
-        <form className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <label htmlFor="username" className=" font-medium">
-              Username
-            </label>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
-              className="input-default"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="password" className=" font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="input-default"
-            />
-            {/* build this in future */}
-          </div>
+        <form className="flex flex-col gap-10">
+          <section className="flex flex-col gap-2">
+            <div className="flex flex-col">
+              <label htmlFor="username" className=" font-medium">
+                Username
+              </label>
+              <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                className="input-default"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="password" className=" font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="input-default"
+              />
+              {/* build this in future */}
+            </div>
+          </section>
           <div className="relative h-3">
             {errors && (
               <li className="absolute text-sm text-red-500">{errors}</li>
@@ -109,17 +111,19 @@ export default function LogIn() {
               </p>
             )}
           </div>
-          <div className="rounded-lg bg-rose-600 text-white">
-            <SignInAsGuest />
-          </div>
-          <button
-            onClick={handleSubmit}
-            type="submit"
-            className="button-default primary-bg-color text-white  xl:text-xl"
-            disabled={isLoading}
-          >
-            {isLoading ? "Please wait..." : "Login"}
-          </button>
+          <section className="flex w-full flex-col gap-6 ">
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="button-default primary-bg-color text-white  xl:text-xl"
+              disabled={isLoading}
+            >
+              {isLoading ? "Please wait..." : "Login"}
+            </button>
+            <div className="rounded-lg bg-rose-600 text-white">
+              <SignInAsGuest />
+            </div>
+          </section>
         </form>
         <div className="flex flex-col gap-1.5">
           <p className="text-center">

@@ -46,7 +46,7 @@ export default function ConversationCard({
         <div className="flex w-full flex-col  ">
           <div className="flex flex-row justify-between">
             <p
-              className={`text-lg ${conversation.lastMessage.sender._id !== user._id && conversation.lastMessage.isRead === false && "font-bold"}`}
+              className={`max-w-[200px] break-words lg:max-w-full ${conversation.lastMessage.sender._id !== user._id && conversation.lastMessage.isRead === false && "font-bold"}`}
             >
               {conversation.participant.username}
             </p>
